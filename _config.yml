@@ -24,6 +24,7 @@ description: An Atlanta Hawks focused site for issues related to the NBA's salar
 # List of links in the navigation bar
 navbar-links:
   About: "about"
+  BY-LAWS: "NBA-BY-LAWS"
   CBA: "http://atlhawksfanatic.github.io/NBA-CBA"
   Resources:
     - CBA FAQ: "http://www.cbafaq.com/salarycap.htm"
