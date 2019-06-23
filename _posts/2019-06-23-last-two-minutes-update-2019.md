@@ -145,14 +145,55 @@ That bit of a rant aside, we can look at the number of graded actions for L2Ms b
 
 The implications of an increased CNC count? Well that is clear, if one wanted to see how often a referee was "correct" then a naive metric would be to construct a version of correct plays divided by total plays -- \\( \frac{CC + CNC}{CC + CNC + IC + INC} \\) where one should include the *blank* calls into the INC but maybe they do not. Let's call this Naive Accuracy and if one does that, then clearly it looks like the NBA referees have been improving in accuracy over time:
 
-
-| Season | Games | Grades per period | Naive Accuracy (without blanks) | Naive Accuracy (including blanks) |
-|:------:|:-----:|:-----------------:|:-------------------------------:|:---------------------------------:|
-|  2015  |  139  |       11.3        |              87.0%              |               86.5%               |
-|  2016  |  439  |       12.9        |              88.5%              |               85.5%               |
-|  2017  |  428  |       15.0        |              91.4%              |               82.8%               |
-|  2018  |  475  |       19.7        |              93.8%              |               86.9%               |
-|  2019  |  453  |       21.3        |              93.2%              |               87.4%               |
+<table>
+<caption>L2M CNC Effects</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Season </th>
+   <th style="text-align:center;"> Games </th>
+   <th style="text-align:center;"> Grades per period </th>
+   <th style="text-align:center;"> Naive Accuracy (without blanks) </th>
+   <th style="text-align:center;"> Naive Accuracy (including blanks) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 2015 </td>
+   <td style="text-align:center;"> 139 </td>
+   <td style="text-align:center;"> 11.3 </td>
+   <td style="text-align:center;"> 87.0% </td>
+   <td style="text-align:center;"> 86.5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2016 </td>
+   <td style="text-align:center;"> 439 </td>
+   <td style="text-align:center;"> 12.9 </td>
+   <td style="text-align:center;"> 88.5% </td>
+   <td style="text-align:center;"> 85.5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> 428 </td>
+   <td style="text-align:center;"> 15.0 </td>
+   <td style="text-align:center;"> 91.4% </td>
+   <td style="text-align:center;"> 82.8% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2018 </td>
+   <td style="text-align:center;"> 475 </td>
+   <td style="text-align:center;"> 19.7 </td>
+   <td style="text-align:center;"> 93.8% </td>
+   <td style="text-align:center;"> 86.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2019 </td>
+   <td style="text-align:center;"> 453 </td>
+   <td style="text-align:center;"> 21.3 </td>
+   <td style="text-align:center;"> 93.2% </td>
+   <td style="text-align:center;"> 87.4% </td>
+  </tr>
+</tbody>
+</table>
 
 Eyeballing these estimates, the Naive Accuracy without *blanks* could be roughly thought of as around 90% with a very clear upward trend. There is less of a pronounced trend when including the *blank* category and it is consistently below 90%. The claim of 90% accuracy is important to note because in the NBA's FAQ for L2M it states "NBA officials are correct roughly 90 percent of the time" as you can see at the beginning of this article.
 
