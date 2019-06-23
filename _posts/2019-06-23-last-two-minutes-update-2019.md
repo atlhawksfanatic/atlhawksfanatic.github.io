@@ -54,18 +54,71 @@ That said, there are five categories for decisions on each graded action for a L
 4. Correct Non-Call (CNC) - a whistle was not blown during action but an infraction did not occur.
 5. *blank* - a blank decision typically comes with a disclaimer in the comments that the play is either `[Detectable with stop watch]`, `[Incidental or immaterial]`, or `[Observable in enhanced video]`, but practically speaking these are incorrect non-calls as an infraction occurred and the referees did not blow whistle.
 
-The CC and IC are straight-forward as a whistle was blown and the L2M will indicate if this was a correct call or not. When a whistle is blown the NBA would prefer that the referee is certain that an infraction has occurred -- I call this Correct Call Percentage which is simply \\( \frac{CC}{CC + IC} \\) and the NBA would want this to be as close to 100\% as possible. Likewise, the INC (and *blank*) categories are fairly straight-forward since an infraction clearly occurred on the play that should have been called but was not. Presumably, the NBA would like the referees to pick up all infractions which occur on the court at a given time and avoid calling an infraction if it did not occur -- I call this Bad Calls Percentage which would be \\( \frac{IC + INC}{CC + IC + INC} \\) and the NBA would want this as close to 0\% as possible. A summary for each NBA Season can be seen below in relation to these variables.
+The CC and IC are straight-forward as a whistle was blown and the L2M will indicate if this was a correct call or not. When a whistle is blown the NBA would prefer that the referee is certain that an infraction has occurred -- I call this Correct Call Percentage which is simply \\( \frac{CC}{CC + IC} \\) and the NBA would want this to be as close to 100% as possible. Likewise, the INC (and *blank*) categories are fairly straight-forward since an infraction clearly occurred on the play that should have been called but was not. Presumably, the NBA would like the referees to pick up all infractions which occur on the court at a given time and avoid calling an infraction if it did not occur -- I call this Bad Calls Percentage which would be \\( \frac{IC + INC}{CC + IC + INC} \\) and the NBA would want this as close to 0% as possible. A summary for each NBA Season can be seen below in relation to these variables.
 
+<table>
+<caption>L2M Call Accuracy</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Season </th>
+   <th style="text-align:center;"> Games </th>
+   <th style="text-align:center;"> Calls per period </th>
+   <th style="text-align:center;"> Incorrect Calls per period </th>
+   <th style="text-align:center;"> Correct Call Percentage </th>
+   <th style="text-align:center;"> Incorrect Non-Calls per period </th>
+   <th style="text-align:center;"> Bad Calls Percentage </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 2015 </td>
+   <td style="text-align:center;"> 139 </td>
+   <td style="text-align:center;"> 4.82 </td>
+   <td style="text-align:center;"> 0.15 </td>
+   <td style="text-align:center;"> 96.9% </td>
+   <td style="text-align:center;"> 1.37 </td>
+   <td style="text-align:center;"> 24.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2016 </td>
+   <td style="text-align:center;"> 439 </td>
+   <td style="text-align:center;"> 4.77 </td>
+   <td style="text-align:center;"> 0.21 </td>
+   <td style="text-align:center;"> 95.6% </td>
+   <td style="text-align:center;"> 1.66 </td>
+   <td style="text-align:center;"> 29.1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> 428 </td>
+   <td style="text-align:center;"> 4.14 </td>
+   <td style="text-align:center;"> 0.08 </td>
+   <td style="text-align:center;"> 98.1% </td>
+   <td style="text-align:center;"> 2.50 </td>
+   <td style="text-align:center;"> 38.8% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2018 </td>
+   <td style="text-align:center;"> 475 </td>
+   <td style="text-align:center;"> 4.14 </td>
+   <td style="text-align:center;"> 0.12 </td>
+   <td style="text-align:center;"> 97.1% </td>
+   <td style="text-align:center;"> 2.46 </td>
+   <td style="text-align:center;"> 39.1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2019 </td>
+   <td style="text-align:center;"> 453 </td>
+   <td style="text-align:center;"> 3.63 </td>
+   <td style="text-align:center;"> 0.14 </td>
+   <td style="text-align:center;"> 96.2% </td>
+   <td style="text-align:center;"> 2.54 </td>
+   <td style="text-align:center;"> 43.4% </td>
+  </tr>
+</tbody>
+</table>
 
-| Season | Games | Calls per period | Incorrect Calls per period | Correct Call Percentage | Incorrect Non-Calls per period | Bad Calls Percentage |
-|:------:|:-----:|:----------------:|:--------------------------:|:-----------------------:|:------------------------------:|:--------------------:|
-|  2015  |  139  |       4.82       |            0.15            |          96.9%          |              1.37              |        24.6%         |
-|  2016  |  439  |       4.77       |            0.21            |          95.6%          |              1.66              |        29.1%         |
-|  2017  |  428  |       4.14       |            0.08            |          98.1%          |              2.50              |        38.8%         |
-|  2018  |  475  |       4.14       |            0.12            |          97.1%          |              2.46              |        39.1%         |
-|  2019  |  453  |       3.63       |            0.14            |          96.2%          |              2.54              |        43.4%         |
-
-The good: the correct call percentage seems to be consistently above 96\% which is close to 100\% and there have been fewer incorrect calls per period since the first two seasons of L2Ms.
+The good: the correct call percentage seems to be consistently above 96% which is close to 100% and there have been fewer incorrect calls per period since the first two seasons of L2Ms.
 
 The neutral: calls per period appears to be going down and there has been roughly the same amount of games for each full season (keep in mind 2014-15 NBA Season only has games from March onward).
 
@@ -76,7 +129,7 @@ It is unclear why the number of calls per period has been trending downward over
 When looking at three of the four categories of grades in the L2M it appears that there are fewer grades and one would think the length of L2Ms have decreased over time. This is nowhere near the case by looking at a loess plot[^loess] of number of graded plays over time as it is clear there was some structural change in January of 2017 to drastically increase the number of grades (the vertical dotted line indicates playoffs, which will have fewer observations and be more noisy):
 
 
-![plot of chunk num-calls](../figure/num-calls-1.png)
+<img src="../figure/num-calls-1.png" title="plot of chunk num-calls" alt="plot of chunk num-calls" width="750px" />
 
 [^loess]: Stands for [local regression](http://r-statistics.co/Loess-Regression-With-R.html) and is a smoothed conditional mean of the number of plays per period for an L2M report. A raw plotting of L2M plays per period is quite noisy and we only want to highlight trends.
 
@@ -88,7 +141,7 @@ For each action, there are a large number of CNC available. Just think for a mom
 
 That bit of a rant aside, we can look at the number of graded actions for L2Ms by decisions. In the following chart, I have coded the *blank* decisions as "inc" but also taken the liberty to be practical and combine the *blank* decisions with the INC for the "INC (implied)" category. As you can see, the overwhelming amount of action in the reports is CNC and this category has crept up each season:
 
-![plot of chunk grade-calls](../figure/grade-calls-1.png)
+<img src="../figure/grade-calls-1.png" title="plot of chunk grade-calls" alt="plot of chunk grade-calls" width="750px" />
 
 The implications of an increased CNC count? Well that is clear, if one wanted to see how often a referee was "correct" then a naive metric would be to construct a version of correct plays divided by total plays -- \\( \frac{CC + CNC}{CC + CNC + IC + INC} \\) where one should include the *blank* calls into the INC but maybe they do not. Let's call this Naive Accuracy and if one does that, then clearly it looks like the NBA referees have been improving in accuracy over time:
 
@@ -101,30 +154,100 @@ The implications of an increased CNC count? Well that is clear, if one wanted to
 |  2018  |  475  |       19.7        |              93.8%              |               86.9%               |
 |  2019  |  453  |       21.3        |              93.2%              |               87.4%               |
 
-Eyeballing these estimates, the Naive Accuracy without *blanks* could be roughly thought of as around 90\% with a very clear upward trend. There is less of a pronounced trend when including the *blank* category and it is consistently below 90%. The claim of 90% accuracy is important to note because in the NBA's FAQ for L2M it states "NBA officials are correct roughly 90 percent of the time" as you can see at the beginning of this article.
+Eyeballing these estimates, the Naive Accuracy without *blanks* could be roughly thought of as around 90% with a very clear upward trend. There is less of a pronounced trend when including the *blank* category and it is consistently below 90%. The claim of 90% accuracy is important to note because in the NBA's FAQ for L2M it states "NBA officials are correct roughly 90 percent of the time" as you can see at the beginning of this article.
 
-Why should 90\% matter? I have no idea aside from that being thought of as the standard threshold for an "A" in academic work. But it is also possible [Campbell's Law](https://en.wikipedia.org/wiki/Campbell%27s_law) is at work and the NBA has already decided their level of success for referees should be 90\% and they are striving to achieve it with their reports. Frankly, I do not know the reason nor do I think anyone should care because this is a poorly constructed measure for evaluating referees.
+Why should 90% matter? I have no idea aside from that being thought of as the standard threshold for an "A" in academic work. But it is also possible [Campbell's Law](https://en.wikipedia.org/wiki/Campbell%27s_law) is at work and the NBA has already decided their level of success for referees should be 90% and they are striving to achieve it with their reports. Frankly, I do not know the reason nor do I think anyone should care because this is a poorly constructed measure for evaluating referees.
 
-But to be clear, the large-scale increase in CNC certainly has an effect of improving the Naive Accuracy measures but that does not imply nefarious activity of CNC. If any cooking of the books existed, then we should see L2M reports with IC or INC calls in them to have more CNC calls as a way to target the 90\% threshold. We can break apart the L2Ms by this criteria for each season to see if there are systematically more CNC with reports of a bad call than without, it turns out there is not much evidence this occurs:
+But to be clear, the large-scale increase in CNC certainly has an effect of improving the Naive Accuracy measures but that does not imply nefarious activity of CNC. If any cooking of the books existed, then we should see L2M reports with IC or INC calls in them to have more CNC calls as a way to target the 90% threshold. We can break apart the L2Ms by this criteria for each season to see if there are systematically more CNC with reports of a bad call than without, it turns out there is not much evidence this occurs:
+
+<table>
+<caption>CNC Count Conditional on IC in Report</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Season </th>
+   <th style="text-align:center;"> IC Occurred </th>
+   <th style="text-align:center;"> No IC Occurred </th>
+   <th style="text-align:center;"> Share of Games With IC </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 2015 </td>
+   <td style="text-align:center;"> 3.61 </td>
+   <td style="text-align:center;"> 5.46 </td>
+   <td style="text-align:center;"> 18.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2016 </td>
+   <td style="text-align:center;"> 6.43 </td>
+   <td style="text-align:center;"> 6.45 </td>
+   <td style="text-align:center;"> 22.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> 8.36 </td>
+   <td style="text-align:center;"> 8.36 </td>
+   <td style="text-align:center;"> 8.18% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2018 </td>
+   <td style="text-align:center;"> 12.61 </td>
+   <td style="text-align:center;"> 13.14 </td>
+   <td style="text-align:center;"> 12.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2019 </td>
+   <td style="text-align:center;"> 14.99 </td>
+   <td style="text-align:center;"> 15.15 </td>
+   <td style="text-align:center;"> 14.3% </td>
+  </tr>
+</tbody>
+</table>
 
 
-| Season | IC Occurred | No IC Occurred | Share of Games With IC |
-|:------:|:-----------:|:--------------:|:----------------------:|
-|  2015  |    3.61     |      5.46      |         18.0%          |
-|  2016  |    6.43     |      6.45      |         22.3%          |
-|  2017  |    8.36     |      8.36      |         8.18%          |
-|  2018  |    12.61    |     13.14      |         12.6%          |
-|  2019  |    14.99    |     15.15      |         14.3%          |
-
-
-
-| Season | INC Occurred | No INC Occurred | Share of Games With INC |
-|:------:|:------------:|:---------------:|:-----------------------:|
-|  2015  |     5.29     |      4.38       |          73.4%          |
-|  2016  |     6.69     |      5.45       |          77.0%          |
-|  2017  |     8.42     |      7.22       |          93.7%          |
-|  2018  |    12.99     |      14.11      |          92.0%          |
-|  2019  |    15.08     |      15.83      |          93.8%          |
+<table>
+<caption>CNC Count Conditional on INC in Report</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Season </th>
+   <th style="text-align:center;"> INC Occurred </th>
+   <th style="text-align:center;"> No INC Occurred </th>
+   <th style="text-align:center;"> Share of Games With INC </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 2015 </td>
+   <td style="text-align:center;"> 5.29 </td>
+   <td style="text-align:center;"> 4.38 </td>
+   <td style="text-align:center;"> 73.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2016 </td>
+   <td style="text-align:center;"> 6.69 </td>
+   <td style="text-align:center;"> 5.45 </td>
+   <td style="text-align:center;"> 77.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> 8.42 </td>
+   <td style="text-align:center;"> 7.22 </td>
+   <td style="text-align:center;"> 93.7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2018 </td>
+   <td style="text-align:center;"> 12.99 </td>
+   <td style="text-align:center;"> 14.11 </td>
+   <td style="text-align:center;"> 92.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2019 </td>
+   <td style="text-align:center;"> 15.08 </td>
+   <td style="text-align:center;"> 15.83 </td>
+   <td style="text-align:center;"> 93.8% </td>
+  </tr>
+</tbody>
+</table>
 
 What is clear is that there are more CNC calls in each season, regardless of whether or not a bad call happened.
 
