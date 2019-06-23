@@ -25,9 +25,11 @@ description: An Atlanta Hawks focused site for issues related to the NBA's salar
 navbar-links:
   About: "about"
   BY-LAWS: "NBA-BY-LAWS"
-  CBA: "http://atlhawksfanatic.github.io/NBA-CBA"
+  CBA: "NBA-CBA"
+  L2M: "L2M"
   Resources:
     - CBA FAQ: "http://www.cbafaq.com/salarycap.htm"
+    - Early Bird Rights (Salary info): "https://earlybirdrights.com/"
     - Peachtree Hoops: "http://www.peachtreehoops.com/"
 
 
