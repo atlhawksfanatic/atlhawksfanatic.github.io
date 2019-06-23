@@ -54,7 +54,7 @@ That said, there are five categories for decisions on each graded action for a L
 4. Correct Non-Call (CNC) - a whistle was not blown during action but an infraction did not occur.
 5. *blank* - a blank decision typically comes with a disclaimer in the comments that the play is either `[Detectable with stop watch]`, `[Incidental or immaterial]`, or `[Observable in enhanced video]`, but practically speaking these are incorrect non-calls as an infraction occurred and the referees did not blow whistle.
 
-The CC and IC are straight-forward as a whistle was blown and the L2M will indicate if this was a correct call or not. When a whistle is blown the NBA would prefer that the referee is certain that an infraction has occurred -- I call this Correct Call Percentage which is simply $\frac{CC}{CC + IC}$ and the NBA would want this to be as close to 100\% as possible. Likewise, the INC (and *blank*) categories are fairly straight-forward since an infraction clearly occurred on the play that should have been called but was not. Presumably, the NBA would like the referees to pick up all infractions which occur on the court at a given time and avoid calling an infraction if it did not occur -- I call this Bad Calls Percentage which would be $\frac{IC + INC}{CC + IC + INC}$ and the NBA would want this as close to 0\% as possible. A summary for each NBA Season can be seen below in relation to these variables.
+The CC and IC are straight-forward as a whistle was blown and the L2M will indicate if this was a correct call or not. When a whistle is blown the NBA would prefer that the referee is certain that an infraction has occurred -- I call this Correct Call Percentage which is simply \\( \frac{CC}{CC + IC} \\) and the NBA would want this to be as close to 100\% as possible. Likewise, the INC (and *blank*) categories are fairly straight-forward since an infraction clearly occurred on the play that should have been called but was not. Presumably, the NBA would like the referees to pick up all infractions which occur on the court at a given time and avoid calling an infraction if it did not occur -- I call this Bad Calls Percentage which would be \\( \frac{IC + INC}{CC + IC + INC} \\) and the NBA would want this as close to 0\% as possible. A summary for each NBA Season can be seen below in relation to these variables.
 
 
 | Season | Games | Calls per period | Incorrect Calls per period | Correct Call Percentage | Incorrect Non-Calls per period | Bad Calls Percentage |
@@ -76,7 +76,7 @@ It is unclear why the number of calls per period has been trending downward over
 When looking at three of the four categories of grades in the L2M it appears that there are fewer grades and one would think the length of L2Ms have decreased over time. This is nowhere near the case by looking at a loess plot[^loess] of number of graded plays over time as it is clear there was some structural change in January of 2017 to drastically increase the number of grades (the vertical dotted line indicates playoffs, which will have fewer observations and be more noisy):
 
 
-![plot of chunk num-calls](figure/num-calls-1.png)
+![plot of chunk num-calls](../figure/num-calls-1.png)
 
 [^loess]: Stands for [local regression](http://r-statistics.co/Loess-Regression-With-R.html) and is a smoothed conditional mean of the number of plays per period for an L2M report. A raw plotting of L2M plays per period is quite noisy and we only want to highlight trends.
 
@@ -88,9 +88,9 @@ For each action, there are a large number of CNC available. Just think for a mom
 
 That bit of a rant aside, we can look at the number of graded actions for L2Ms by decisions. In the following chart, I have coded the *blank* decisions as "inc" but also taken the liberty to be practical and combine the *blank* decisions with the INC for the "INC (implied)" category. As you can see, the overwhelming amount of action in the reports is CNC and this category has crept up each season:
 
-![plot of chunk grade-calls](figure/grade-calls-1.png)
+![plot of chunk grade-calls](../figure/grade-calls-1.png)
 
-The implications of an increased CNC count? Well that is clear, if one wanted to see how often a referee was "correct" then a naive metric would be to construct a version of correct plays divided by total plays -- $\frac{CC + CNC}{CC + CNC + IC + INC}$ where one should include the *blank* calls into the INC but maybe they do not. Let's call this Naive Accuracy and if one does that, then clearly it looks like the NBA referees have been improving in accuracy over time:
+The implications of an increased CNC count? Well that is clear, if one wanted to see how often a referee was "correct" then a naive metric would be to construct a version of correct plays divided by total plays -- \\( \frac{CC + CNC}{CC + CNC + IC + INC} \\) where one should include the *blank* calls into the INC but maybe they do not. Let's call this Naive Accuracy and if one does that, then clearly it looks like the NBA referees have been improving in accuracy over time:
 
 
 | Season | Games | Grades per period | Naive Accuracy (without blanks) | Naive Accuracy (including blanks) |
