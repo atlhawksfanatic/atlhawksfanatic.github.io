@@ -14,7 +14,7 @@ layout: post
 
 
 
-The NBA's Last Two Minute (L2M) reports are intended to be a transparent analysis of  referee performance at the end of close NBA games. Having started on March 1st of 2015, they have been publicly available on the [official.nba.com](official.nba.com) section of the NBA's website. Being publicly available is not the same thing as easily accessible or user friendly. These reports are scattered across their website (with a few games hidden) and in PDF format for the majority of games. The NBA did make a major improvement after the 2019 NBA All-Star game in switching away from PDF format for the reports to a web-based format, however all of the pre-2019 All-Star game L2Ms remain in PDF format.
+The NBA's Last Two Minute (L2M) reports are intended to be a transparent analysis of  referee performance at the end of close NBA games. Having started on March 1st of 2015, they have been publicly available on the [official.nba.com](https://official.nba.com/) section of the NBA's website. Being publicly available is not the same thing as easily accessible or user friendly. These reports are scattered across their website (with a few games hidden) and in PDF format for the majority of games. The NBA did make a major improvement after the 2019 NBA All-Star game in switching away from PDF format for the reports to a web-based format, however all of the pre-2019 All-Star game L2Ms remain in PDF format.
 
 The actual structure of the underlying data in L2Ms is consistent. Each event is a graded action in a play. The action will contain the period of action, time remaining, call (foul, turnover, violation, etc), type of call (shooting foul, personal foul, etc.), committing player, disadvantaged player, decision, and comment of the action. Sometimes there is no disadvantaged or committing player due to the nature of a play, but the intended structure should lend itself to be nicely formatted after all of the information is extracted.
 
@@ -22,7 +22,7 @@ All of the code for extracting can be found in my [L2M GitHub repository](https:
 
 # Downloading L2Ms
 
-There are three main sections of the [official.nba.com](official.nba.com) website where L2Ms reside:
+There are three main sections of the [official.nba.com](https://official.nba.com/) website where L2Ms reside:
 
 1. [Archived](http://official.nba.com/nba-last-two-minute-reports-archive/) for games from March 1st, 2015 through the 2017 NBA Finals.
 2. [2017-18](https://official.nba.com/2017-18-nba-officiating-last-two-minute-reports/) for games in the 2017-18 NBA Season.
@@ -101,7 +101,7 @@ pdf_games <- map(links_pdf,  function(x) {
 })
 ```
 
-For the non-PDF links, this becomes a bit more complex. Take for example the last game of the 2018-19 NBA Season's url: https://official.nba.com/l2m/L2MReport.html?gameId=0041800406
+For the non-PDF links, this becomes a bit more complex. Take for example the last game of the 2018-19 NBA Season's url: [https://official.nba.com/l2m/L2MReport.html?gameId=0041800406](https://official.nba.com/l2m/L2MReport.html?gameId=0041800406)
 
 We can see that the structure of the L2M is consistent in that each graded action has the required elements of period, time remaining, etc. Ideally, we would want to read the website with `read_html()` and then simply read in the resulting table with `html_table()`. This method does not work because the web page is rendered with JavaScript:
 
@@ -155,7 +155,7 @@ glimpse(tail(l2m_site))
 ## $ NA                     <lgl> NA, NA, NA, NA, NA, NA
 ```
 
-Success! Now with a little bit of tedious adjustments to the resulting data, we can gather up the resulting variables for each action into a consistent format. The gritty details can be found in [0-data/0-L2M-download-2018-19.R](../0-data/0-L2M-download-2018-19.R).
+Success! Now with a little bit of tedious adjustments to the resulting data, we can gather up the resulting variables for each action into a consistent format. The gritty details can be found in [0-data/0-L2M-download-2018-19.R](L2M/0-data/0-L2M-download-2018-19.R).
 
 # Parsing PDFs
 
@@ -299,5 +299,5 @@ glimpse(results)
 ## $ comments      <fct> NA, "Durant (GSW) dislodges Adams (OKC) from his p…
 ```
 
-We now have enough comments to match he play data and have completed extracting the relevant information from a page in a PDF. This was a relatively straight-forward page and how one would hope the PDFs are all structured. Unfortunately, not all pages in PDfs are this simple and you can see all the gory hacks that have needed to parse through all of the PDFs for just the 2018-19 NBA Season in the [0-data/0-L2M-pdftools-2018-19.R](../0-data/0-L2M-pdftools-2018-19.R) file.
+We now have enough comments to match he play data and have completed extracting the relevant information from a page in a PDF. This was a relatively straight-forward page and how one would hope the PDFs are all structured. Unfortunately, not all pages in PDfs are this simple and you can see all the gory hacks that have needed to parse through all of the PDFs for just the 2018-19 NBA Season in the [0-data/0-L2M-pdftools-2018-19.R](L2M/0-data/0-L2M-pdftools-2018-19.R) file.
 
