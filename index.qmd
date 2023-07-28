@@ -1,0 +1,21 @@
+---
+title: "hello there."
+# about:
+#   template: marquee
+#   image: img/philips.jpg
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+---
+
+This site's purpose is to provide various information related to the NBA's Collective Bargaining Agreement (CBA), its Last 2 Minute Reports (L2M), the economics of the NBA, and possibly the Atlanta Hawks. If you are looking for opinionated content or hot takes, then you will be disappointed by this site. My goal is to explain issues within the NBA, disperse information, and provide insight that may not be available elsewhere. Hopefully, you can gain a bit of knowledge from some aspect of this site.
+
+This is the second iteration of the website, although you aren't missing much from the first as everything is reproduced here. It is still a tad unclear as to what information will populate this site and how it will be structured. But this will certainly be a website.
+
+Enjoy.

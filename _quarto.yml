@@ -1,0 +1,112 @@
+project:
+  type: website
+  render: 
+    - "*.qmd"
+    - "!posts/bird-rights-dont-exist"
+
+website:
+  title: "atlhawksfanatic"
+  google-analytics: "UA-98319558-3"
+  repo-url: https://github.com/atlhawksfanatic/atlhawksfanatic.github.io
+  navbar:
+    right:
+      - about.qmd
+      - text: By-Laws
+        file: NBA-BY-LAWS
+      - text: CBAs
+        menu:
+          - text: "2023"
+            href: NBA-CBA
+          - text: "2017"
+            href: NBA-CBA-2017
+          - text: "2011"
+            href: NBA-CBA-2011
+          - text: "2005"
+            href: NBA-CBA-2005
+          - text: "1999"
+            href: NBA-CBA-1999
+          - text: "1995"
+            href: NBA-CBA-1995
+      - text: Historical CBA PDFs
+        menu: 
+          - text: "2023"
+            href: research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - text: "2017"
+            href: research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - text: "2011"
+            href: research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - text: "2005"
+            href: research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - text: "1999"
+            href: research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - text: "1995"
+            href: research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+      - text: L2M
+        file: L2M
+      - icon: github
+        href: https://github.com/atlhawksfanatic
+      - icon: twitter
+        href: https://twitter.com/atlhawksfanatic
+  sidebar:
+    style: docked
+    search: false
+    alignment: right
+    collapse-level: 2
+    contents:
+      - about.qmd
+      - text: By-Laws
+        href: NBA-BY-LAWS
+      - section: CBAs
+        contents:
+          - section: "2023"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA
+            - text: "Historical PDF"
+              href: research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - section: "2017"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA-2017
+            - text: "Historical PDF"
+              href: research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - section: "2011"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA-2011
+            - text: "Historical PDF"
+              href: research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - section: "2005"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA-2005
+            - text: "Historical PDF"
+              href: research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - section: "1999"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA-1999
+            - text: "Historical PDF"
+              href: research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+          - section: "1995"
+            contents: 
+            - text: "Searchable"
+              href: NBA-CBA-1995
+            - text: "Historical PDF"
+              href: research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf
+      - text: L2M
+        href: L2M
+      - icon: github
+        href: https://github.com/atlhawksfanatic
+      - icon: twitter
+        href: https://twitter.com/atlhawksfanatic
+format:
+  html:
+    theme: superhero
+    reference-location: margin
+    footnotes-hover: true
+    css: 
+      - styles.css
+
+editor: visual
+
