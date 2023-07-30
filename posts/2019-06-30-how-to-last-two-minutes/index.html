@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robert">
+<meta name="dcterms.date" content="2019-06-30">
+
+<title>atlhawksfanatic - How To Extract The Last Two Minute Reports</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-98319558-3', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">atlhawksfanatic</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../NBA-BY-LAWS" rel="" target="">
+ <span class="menu-text">By-Laws</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cbas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">CBAs</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cbas">    
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA" rel="" target="">
+ <span class="dropdown-text">2023</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2017" rel="" target="">
+ <span class="dropdown-text">2017</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2011" rel="" target="">
+ <span class="dropdown-text">2011</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2005" rel="" target="">
+ <span class="dropdown-text">2005</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-1999" rel="" target="">
+ <span class="dropdown-text">1999</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-1995" rel="" target="">
+ <span class="dropdown-text">1995</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-historical-cba-pdfs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Historical CBA PDFs</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-historical-cba-pdfs">    
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2023</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2017</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2011</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2005</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">1999</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">1995</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../L2M" rel="" target="">
+ <span class="menu-text">L2M</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/atlhawksfanatic" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/atlhawksfanatic" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">How To Extract The Last Two Minute Reports</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">How To Extract The Last Two Minute Reports</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 30, 2019</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-BY-LAWS" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">By-Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">CBAs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">2023</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">2017</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2017" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">2011</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2011" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">2005</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2005" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">1999</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-1999" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">1995</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-1995" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../L2M" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L2M</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>The NBA’s Last Two Minute (L2M) reports are intended to be a transparent analysis of referee performance at the end of close NBA games. Having started on March 1st of 2015, they have been publicly available on the <a href="https://official.nba.com/">official.nba.com</a> section of the NBA’s website. Being publicly available is not the same thing as easily accessible or user friendly. These reports are scattered across their website (with a few games hidden) and in PDF format for the majority of games. The NBA did make a major improvement after the 2019 NBA All-Star game in switching away from PDF format for the reports to a web-based format, however all of the pre-2019 All-Star game L2Ms remain in PDF format.</p>
+<p>The actual structure of the underlying data in L2Ms is consistent. Each event is a graded action in a play. The action will contain the period of action, time remaining, call (foul, turnover, violation, etc), type of call (shooting foul, personal foul, etc.), committing player, disadvantaged player, decision, and comment of the action. Sometimes there is no disadvantaged or committing player due to the nature of a play, but the intended structure should lend itself to be nicely formatted after all of the information is extracted.</p>
+<p>All of the code for extracting can be found in my <a href="https://github.com/atlhawksfanatic/L2M">L2M GitHub repository</a>, but this small tutorial is to show how I used <a href="https://www.r-project.org/">R</a> in order to download, parse, and tidy up the L2M data.</p>
+<section id="downloading-l2ms" class="level1">
+<h1>Downloading L2Ms</h1>
+<p>There are three main sections of the <a href="https://official.nba.com/">official.nba.com</a> website where L2Ms reside:</p>
+<ol type="1">
+<li><a href="http://official.nba.com/nba-last-two-minute-reports-archive/">Archived</a> for games from March 1st, 2015 through the 2017 NBA Finals.</li>
+<li><a href="https://official.nba.com/2017-18-nba-officiating-last-two-minute-reports/">2017-18</a> for games in the 2017-18 NBA Season.</li>
+<li><a href="https://official.nba.com/2018-19-nba-officiating-last-two-minute-reports/">2018-19</a> for games in the 2018-19 NBA Season.</li>
+</ol>
+<p>As a guess, there will likely be a corresponding <a href="https://official.nba.com/2019-20-nba-officiating-last-two-minute-reports/">2019-20</a> section of the website where they will put the next season’s games, but as of right now it returns a 404 error.</p>
+<p>Downloading the L2M reports requires the <code>httr</code> and <code>rvest</code> packages as well as the <code>tidyverse</code> for ease of use. But with the 2018-19 season as an example, we can determine all of the urls for the L2Ms by scraping that section of the site and searching for the nodes which contain games:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"httr"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rvest"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://official.nba.com/"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"2018-19-nba-officiating-last-two-minute-reports/"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in url from above, then extract the links that comply with:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_nodes</span>(<span class="st">"#main a+ a , strong+ a"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(links)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-MIL-CHA-10-17-2018.pdf"  
+## [2] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-BKN-DET-10-17-2018-1.pdf"
+## [3] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-MIA-ORL-10-17-2018.pdf"  
+## [4] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-MIN-SAS-10-17-2018.pdf"  
+## [5] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-DEN-LAC-10-17-2018.pdf"  
+## [6] "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-OKC-GSW-10-16-2018.pdf"</code></pre>
+<p>The resulting object of urls contains 457 games. Most of these are of PDF format, however as previously mentioned some of these links are web pages and not PDFs:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tools<span class="sc">::</span><span class="fu">file_ext</span>(links))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## 
+##     pdf 
+## 170 287</code></pre>
+<p>We want to separate these two types of links because they require different ways to parse the L2M data for analysis. The PDFs are straight-forward, we simply want to download each of the 287 PDFs into a folder to be parsed later:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a directory for the data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>local_dir     <span class="ot">&lt;-</span> <span class="st">"0-data/L2M/2018-19"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data_source   <span class="ot">&lt;-</span> <span class="fu">paste0</span>(local_dir, <span class="st">"/raw"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(local_dir)) <span class="fu">dir.create</span>(local_dir, <span class="at">recursive =</span> T)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(data_source)) <span class="fu">dir.create</span>(data_source, <span class="at">recursive =</span> T)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset only the </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>links_pdf <span class="ot">&lt;-</span> links[<span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">"*.pdf"</span>, links)]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>files  <span class="ot">&lt;-</span> <span class="fu">paste</span>(data_source, <span class="fu">basename</span>(links_pdf), <span class="at">sep =</span> <span class="st">"/"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For each url and file, check to see if it exists then try to download.</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  need to keep a record of those which fail with a 404 error</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>pdf_games <span class="ot">&lt;-</span> <span class="fu">map</span>(links_pdf,  <span class="cf">function</span>(x) {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  file_x <span class="ot">&lt;-</span> <span class="fu">paste</span>(data_source, <span class="fu">basename</span>(x), <span class="at">sep =</span> <span class="st">"/"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(file_x)) {</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tryCatch</span>(<span class="fu">download.file</span>(x, file_x, <span class="at">method =</span> <span class="st">"libcurl"</span>),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>               <span class="st">"bad"</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>             })</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="st">"exists"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For the non-PDF links, this becomes a bit more complex. Take for example the last game of the 2018-19 NBA Season’s url: <a href="https://official.nba.com/l2m/L2MReport.html?gameId=0041800406">https://official.nba.com/l2m/L2MReport.html?gameId=0041800406</a></p>
+<p>We can see that the structure of the L2M is consistent in that each graded action has the required elements of period, time remaining, etc. Ideally, we would want to read the website with <code>read_html()</code> and then simply read in the resulting table with <code>html_table()</code>. This method does not work because the web page is rendered with JavaScript:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>links[<span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [[1]]
+## [1] Period               Time                 Call Type           
+## [4] Committing Player    Disadvantaged Player Review Decision     
+## [7] Video               
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>In order to correct for this, we need a service which will read in the full page after the JavaScript has been rendered. This is where the <a href="https://cran.r-project.org/web/packages/splashr/vignettes/intro_to_splashr.html"><code>splashr</code></a> package comes in handy as it will allow for the webpage to first load all of the JavaScript (and resulting table of information) that we can then scrape. You will need to have <code>splashr</code> installed and properly set-up, likely with a <a href="https://www.docker.com/">Docker</a> container running in the background. Once you have this, we can read in the url properly after waiting a few seconds for the web page to render (ie set <code>wait = 7</code> for a 7 second delay) then read in the resulting html table:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"splashr"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">splash_active</span>() <span class="co"># This needs to be TRUE to work...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>l2m_raw <span class="ot">&lt;-</span> <span class="fu">render_html</span>(<span class="at">url =</span> links[<span class="dv">1</span>], <span class="at">wait =</span> <span class="dv">7</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>l2m_site <span class="ot">&lt;-</span> l2m_raw  <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">fill =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  .[[<span class="dv">1</span>]]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(<span class="fu">tail</span>(l2m_site))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Observations: 6
+## Variables: 8
+## $ Period                 &lt;chr&gt; "Period: Q4", "Comment:", "Period: Q4", "…
+## $ Time                   &lt;chr&gt; "Time: 00:02.1", "Leonard (TOR) dives for…
+## $ `Call Type`            &lt;chr&gt; "Call Type:  Foul: Loose Ball", "Leonard …
+## $ `Committing Player`    &lt;chr&gt; "Committing Player: Kawhi Leonard", "Leon…
+## $ `Disadvantaged Player` &lt;chr&gt; "Disadvantaged Player: Draymond Green", "…
+## $ `Review Decision`      &lt;chr&gt; "Review Decision: CNC", "Leonard (TOR) di…
+## $ Video                  &lt;chr&gt; "Video Url: Video", "Leonard (TOR) dives …
+## $ NA                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA</code></pre>
+<p>Success! Now with a little bit of tedious adjustments to the resulting data, we can gather up the resulting variables for each action into a consistent format. The gritty details can be found in <a href="L2M/0-data/0-L2M-download-2018-19.R">0-data/0-L2M-download-2018-19.R</a>.</p>
+</section>
+<section id="parsing-pdfs" class="level1">
+<h1>Parsing PDFs</h1>
+<p>Now back to the PDFs that we stored away for later, although we’ll just use the first one from the 2018-19 Season. We need a package that can extract the text information in each PDF to then extract the relevant variables. The <a href="https://github.com/ropensci/pdftools"><code>pdftools</code></a> package allows for the reading of text from each page of a PDF, at which point we will need some understanding of the approximate format of each page:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pdftools"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>raw_text <span class="ot">&lt;-</span> pdftools<span class="sc">::</span><span class="fu">pdf_text</span>(<span class="st">"https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2018/10/L2M-OKC-GSW-10-16-2018.pdf"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(raw_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>raw_text[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] "Below is the league's assessment of officiated events that occurred in the last two minutes of last night's games that were at or within three points during any point in the last two-minutes of\nthe fourth quarter (and overtime, where applicable). The plays assessed include all calls (whistles) and notable non-calls. Notable non-calls will generally be defined as material plays directly\nrelated to the outcome of a possession. Similar to our instant replay standards, there must be clear and conclusive video evidence in order to make a determination that a play was incorrectly\nofficiated. Events that are indirectly related to the outcome of a possession (e.g., a non-call on contact away from the play) and/or plays that are only observable with the help of a stop-watch,\nzoom or other technical support, are noted in brackets along with the explanatory comments but are not deemed to be incorrectly officiated. The league may change its view after further\nreview. If you have any questions, please contact the NBA here.\n                                                                       Thunder (100) @ Warriors (108) October 16, 2018\n       Period         Time                          Call Type                              Committing Player                           Disadvantaged Player     Review Decision\n                   02:03.1                          01:57.7\n                   02:03.1     To    01:57.7\n       Q4           01:57.8                      Foul: Personal                                 Kevin Durant                               Steven Adams                  CC\nComment:            Durant (GSW) dislodges Adams (OKC) from his post position during the pass.\n                   01:57.7                          01:46.0\n                   01:57.7     To    01:46.0\n       Q4           01:49.5                      Foul: Offensive                               Kevon Looney                               Dennis Schroder               CNC\nComment:            Looney (GSW) establishes a legal picking position in Schröder's (OKC) path before the contact.\n       Q4           01:46.9                      Foul: Shooting                               Dennis Schroder                               Stephen Curry                CC\nComment:            Schröder (OKC) trails Curry (GSW) and makes contact with his body during his shooting motion.\n                   01:46.0                                                     01:27.8\n                   01:46.0     To    01:27.8\n       Q4           01:44.0                     Foul: Personal                                Kevin Durant                                 Paul George                  CNC\nComment:            Durant (GSW) obtains a legal defensive position before George (OKC) initiates contact. The players briefly engage and separate.\n       Q4           01:37.4                     Foul: Offensive                               Steven Adams                                 Kevin Durant                 CNC\nComment:            Adams (OKC) is already in Durant's (GSW) path when he and Looney (GSW) move forward slightly. Adams does not deliver or\n                    extend into Durant's path.\n       Q4           01:32.1                      Foul: Personal                              Stephen Curry                               Terrance Ferguson              CNC\nComment:            Curry (GSW) is in a legal guarding position as he moves along Ferguson's (OKC) path during the drive to the basket and any\n                    contact is incidental.\n       Q4           01:28.9                      Foul: Shooting                              Draymond Green                               Steven Adams                  CNC\nComment:            Green (GSW) makes incidental \"high-five\" contact with Adams (OKC) after the release of his shot attempt in the lane.\n                   01:27.8                                                           01:06.4\n                   01:27.8     To    01:06.4\n       Q4           01:16.0                       Foul: Personal                             Dennis Schroder                               Stephen Curry                CNC\nComment:            Schröder (OKC) briefly places two hands on Curry (GSW) off ball without affecting his SQBR.\n       Q4           01:15.4                      Foul: Personal                              Terrance Ferguson                             Kevin Durant                 CNC\nComment:            LHH shows that Durant (GSW) loses control of the ball on his own, after which Ferguson (OKC) makes contact with the ball and\n                    makes incidental contact with Durant as they try to retrieve it.\n       Q4           01:15.4                   Turnover: Traveling                              Kevin Durant                                                             CNC\nComment:            LHH shows that Ferguson (OKC) makes contact with the ball and Durant (GSW) regains control and continues his dribble.\n       Q4           01:15.0                     Foul: Offensive                                Kevon Looney                                  Paul George                CNC\nComment:            Looney (GSW) is in Durant's (GSW) path before the contact on the hand-off. While he is turned, he has already established\n                    himself in Durant's path and absorbs the contact when it occurs.\n       Q4           01:07.5                      Foul: Shooting                               Jerami Grant                                  Kevon Looney                CNC\nComment:            RLS shows that Grant (OKC) obtains a vertical position and absorbs contact from Looney (GSW) on the play at the basket. Since\n                    the play originates inside the lower defensive box (the area between the 3' posted-up marks, the bottom tip of the circle and the\n                    endline), Grant can be on the floor in the restricted area when the contact occurs.\n                                                                                                                                                                                          1\n"</code></pre>
+<p>Each L2M has the same type of disclaimer and description at the beginning. It is always something to the effect of explaining that they grade calls although the literal description does change. This is not important to us, what we firstly need to find in the text is where the game details occur for each page. The game details are where the two teams are mentioned and the date. For this report, it is “Thunder (100) @ Warriors (108) October 16, 2018” that starts the relevant information. At the other end of the spectrum, we need to find out where the page ends. This particular L2M has two pages and the second page ends with a description of “Event Assessments” while the first page simply ends with a “1” to indicate it is the first page. So if “Event Assessments” is not present on the page, we know it will end with a page number. We want to find the beginning and end of the relevant information of each line and only keep those lines:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> raw_text[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_trim</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Each report will start off with the two teams and an @ symbol</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  I don't think there's any other @s in a pdf</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>begin <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"@"</span>, temp)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># in case of another "@" instance just take the first</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(begin) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  begin <span class="ot">&lt;-</span> begin[<span class="dv">1</span>]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  game_details <span class="ot">=</span> temp[begin]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">length</span>(begin) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    game_details <span class="ot">=</span> temp[begin]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># But if it doesn't exist, then it's a secondary page so set to 1</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">length</span>(begin) <span class="sc">==</span> <span class="dv">0</span>) { </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>      begin <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      game_details <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Each report finishes with a footer that describes the event assessments</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>done  <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"Event Assessments"</span>, temp)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># But there might not be any pages where this ends</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(done) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  done <span class="ot">=</span> <span class="fu">length</span>(temp) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>temp_info <span class="ot">&lt;-</span> temp[(begin)<span class="sc">:</span>(done <span class="sc">-</span> <span class="dv">1</span>)]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] "Thunder (100) @ Warriors (108) October 16, 2018"                                                                                                                         
+## [2] "Period         Time                          Call Type                              Committing Player                           Disadvantaged Player     Review Decision"
+## [3] "02:03.1                          01:57.7"                                                                                                                                
+## [4] "02:03.1     To    01:57.7"                                                                                                                                               
+## [5] "Q4           01:57.8                      Foul: Personal                                 Kevin Durant                               Steven Adams                  CC"    
+## [6] "Comment:            Durant (GSW) dislodges Adams (OKC) from his post position during the pass."</code></pre>
+<p>We now have each line after the beginning read in. At this point, we need to determine which lines contain information about a play. Each play begins with a period and then time. We need to find each line with a mention of a period and subset that information to be read in as a play:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Does the line contain a quarter reference? Then it's probably a play</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plays <span class="ot">&lt;-</span> temp_info[<span class="fu">c</span>(<span class="fu">grep</span>(<span class="st">"^Period"</span>, temp_info),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">grep</span>(<span class="st">"^Q"</span>, temp_info))]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>play_data <span class="ot">&lt;-</span> <span class="fu">read_table</span>(plays, <span class="at">col_names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">.default =</span> <span class="st">"c"</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(play_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Observations: 13
+## Variables: 7
+## $ X1 &lt;chr&gt; "Period", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4…
+## $ X2 &lt;chr&gt; "Time", "01:57.8", "01:49.5", "01:46.9", "01:44.0", "01:37.4"…
+## $ X3 &lt;chr&gt; "Call Type", "Foul: Personal", "Foul: Offensive", "Foul: Shoo…
+## $ X4 &lt;chr&gt; "Committing Player", "Kevin Durant", "Kevon Looney", "Dennis …
+## $ X5 &lt;chr&gt; "Disadvantaged Player", "Steven Adams", "Dennis Schroder", "S…
+## $ X6 &lt;chr&gt; "Review", "", "", "", "", "", "", "", "", "", "", "", ""
+## $ X7 &lt;chr&gt; "Decision", "CC", "CNC", "CC", "CNC", "CNC", "CNC", "CNC", "C…</code></pre>
+<p>We are fortunate for this particular PDF that there are only 7 columns of data because the adjustment for the resulting data.frame is to simply rename the columns and combine the last two columns:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(play_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"period"</span>, <span class="st">"time"</span>, <span class="st">"call_type"</span>, <span class="st">"committing"</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"disadvantaged"</span>, <span class="st">"decision"</span>, <span class="st">"decision2"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>play_data <span class="ot">&lt;-</span> play_data <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decision =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(decision) <span class="sc">|</span> decision <span class="sc">==</span> <span class="st">""</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                           decision2, decision)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, time, call_type, committing, disadvantaged, decision)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(play_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Observations: 13
+## Variables: 6
+## $ period        &lt;chr&gt; "Period", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4"…
+## $ time          &lt;chr&gt; "Time", "01:57.8", "01:49.5", "01:46.9", "01:44.0"…
+## $ call_type     &lt;chr&gt; "Call Type", "Foul: Personal", "Foul: Offensive", …
+## $ committing    &lt;chr&gt; "Committing Player", "Kevin Durant", "Kevon Looney…
+## $ disadvantaged &lt;chr&gt; "Disadvantaged Player", "Steven Adams", "Dennis Sc…
+## $ decision      &lt;chr&gt; "Review", "CC", "CNC", "CC", "CNC", "CNC", "CNC", …</code></pre>
+<p>The only thing missing for the data now are the comments. In the PDFs, comments are below the play action and thus we need to extract each of these lines individually then add them as a separate column to the <code>play_data</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>temp_com <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(temp_info[<span class="fu">grep</span>(<span class="st">"^Comment"</span>, temp_info)], <span class="st">"Comment:"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>comment  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">comments =</span> <span class="fu">str_trim</span>(temp_com))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add in an NA comment to account for the header</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>comments <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">data.frame</span>(<span class="at">comments =</span> <span class="cn">NA</span>), comment)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(play_data, comments)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Observations: 13
+## Variables: 7
+## $ period        &lt;chr&gt; "Period", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4", "Q4"…
+## $ time          &lt;chr&gt; "Time", "01:57.8", "01:49.5", "01:46.9", "01:44.0"…
+## $ call_type     &lt;chr&gt; "Call Type", "Foul: Personal", "Foul: Offensive", …
+## $ committing    &lt;chr&gt; "Committing Player", "Kevin Durant", "Kevon Looney…
+## $ disadvantaged &lt;chr&gt; "Disadvantaged Player", "Steven Adams", "Dennis Sc…
+## $ decision      &lt;chr&gt; "Review", "CC", "CNC", "CC", "CNC", "CNC", "CNC", …
+## $ comments      &lt;fct&gt; NA, "Durant (GSW) dislodges Adams (OKC) from his p…</code></pre>
+<p>We now have enough comments to match he play data and have completed extracting the relevant information from a page in a PDF. This was a relatively straight-forward page and how one would hope the PDFs are all structured. Unfortunately, not all pages in PDfs are this simple and you can see all the gory hacks that have needed to parse through all of the PDFs for just the 2018-19 NBA Season in the <a href="L2M/0-data/0-L2M-pdftools-2018-19.R">0-data/0-L2M-pdftools-2018-19.R</a> file.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
