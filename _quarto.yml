@@ -2,7 +2,7 @@ project:
   type: website
   render: 
     - "*.qmd"
-    - "!posts/bird-rights-dont-exist"
+    - "!posts/bird-rights*"
 
 website:
   title: "atlhawksfanatic"
