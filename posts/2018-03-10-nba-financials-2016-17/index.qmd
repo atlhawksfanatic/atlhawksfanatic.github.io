@@ -28,19 +28,19 @@ Let me provide some of the important figures for the NBA's finances in the 2016-
 Let's start with what we know: the [NBA set the Salary Cap](http://www.nba.com/article/2017/07/01/nba-salary-cap-set-2017-18-season-99093-million) for 2017-18 Season at **\$99,093,000** and the Luxury Tax at **\$119,266,000**. That allows us to know pretty close to what the BRI for 2016-17 is and lets us know exactly what Projected BRI is. To get to these values, we need to define how the Salary Cap is set:
 
 $$
-SC_t = \frac{0.4474*\text{Projected BRI}_t - \text{Projected Benefits}_t}{\text{# of teams (30)}} + \frac{\text{Adjustment}_t}{\text{# of teams (30)}}
+{SC}_t = \frac{0.4474*\text{Projected BRI}_t - \text{Projected Benefits}_t}{\text{\# of teams (30)}} + \frac{\text{Adjustment}_t}{\text{\# of teams (30)}}
 $$
 
 Where I will eventually get to defining what goes into Projected BRI, Projected Benefits, and Adjustment throughout this article. As of right now, all three of those components are unknown to us but can and will be determined. The Luxury Tax is set in the same fashion, except the factor multiplied by Projected BRI is 53.51% instead of 44.74%:
 
 $$
-LC_t = \frac{0.5351*\text{Projected BRI}_t - \text{Projected Benefits}_t}{\text{# of teams (30)}} + \frac{\text{Adjustment}_t}{\text{# of teams (30)}}
+{LC}_t = \frac{0.5351*\text{Projected BRI}_t - \text{Projected Benefits}_t}{\text{\# of teams (30)}} + \frac{\text{Adjustment}_t}{\text{\# of teams (30)}}
 $$
 
 This leaves us with 2 equations and 3 unknowns: Projected BRI, Projected Benefits, and the Adjustment. We can subtract the Salary Cap from the Luxury Tax and do some algebra to redefine Projected BRI as:
 
 $$
-\text{Projected BRI}_t = \frac{\text{# of teams (30)}}{(0.5351 - 0.4474)}*(LT_t - SC_t) = \frac{\text{# of teams (30)}}{(0.0877)}*(LT_t - SC_t) 
+\text{Projected BRI}_t = \frac{\text{\# of teams (30)}}{(0.5351 - 0.4474)}*(LT_t - SC_t) = \frac{\text{\# of teams (30)}}{(0.0877)}*(LT_t - SC_t) 
 $$
 
 We have eliminated one equation and two of the unknowns. Now we are left with one equation and one unknown which becomes a plug-n-chug to figure out that the Projected BRI used in the 2017-18 Salary Cap calculation is **\$6,900,684,151**. We can use Projected BRI as well as the NBA's TV contract to back out what actual BRI was for 2016-17. This comes from the definition of Projected BRI in the CBA [VII 7.2.c](https://atlhawksfanatic.github.io/NBA-CBA/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.) where the known value of the National TV payout for the year of interest is added to 1.045 times the non-TV portion of BRI for the previous year. Or in other words, BRI is split into the TV and non-TV portion for every year. The TV portion is known in advance due to the nature of the contract having a specific yearly payout. However, the non-TV portion of BRI covers revenue sources that are variable and not well known for the future. Because of the variable nature, the NBA will simply project forward a 4.5% increase in this amount for the Projected BRI:
