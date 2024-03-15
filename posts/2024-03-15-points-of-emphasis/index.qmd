@@ -1,7 +1,7 @@
 ---
 title: "Post of Emphasis on: Points Of Emphasis"
 author: "robert"
-date: today
+date: 2024-03-15
 tags: [referees]
 ---
 
@@ -52,7 +52,7 @@ For the 2022-23 Season, there was a video series involving the [POE with Monty M
 [^2]: One aspect of Joe's retirement announcement that I find interesting is: "Borgia is the son of the late Sid Borgia, a legendary referee who officiated in the NBA for 20 years beginning in 1946. Sid Borgia also served as supervisor of officials during the latter years of his career."
 
 | Season  | Series              |     Leader      |                                                                                           website |
-|:---------------|:----------------------|:----------------:|---------------:|
+|:----------------|:---------------------|:---------------:|----------------:|
 | 2023-24 | Points of Emphasis  | Monty McCutchen |                                            <https://official.nba.com/2023-24-points-of-emphasis/> |
 | 2022-23 | Points of Emphasis  | Monty McCutchen |                     <https://www.nba.com/watch/list/collection/points-of-emphasis-2022-23-season> |
 | 2021-22 | Points of Education | Monty McCutchen |                                     <https://official.nba.com/video-2021-22-points-of-education/> |

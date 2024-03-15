@@ -1,7 +1,7 @@
 ---
 title: Bird Rights Aren't Real
 author: "robert"
-date: today
+date: 2023-10-29
 tags: [salary cap]
 ---
 
