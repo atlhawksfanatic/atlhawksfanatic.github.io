@@ -46,8 +46,10 @@ $$
 We have eliminated one equation and two of the unknowns. Now we are left with one equation and one unknown which becomes a plug-n-chug to figure out that the Projected BRI used in the 2017-18 Salary Cap calculation is **\$6,900,684,151**. We can use Projected BRI as well as the NBA's TV contract to back out what actual BRI was for 2016-17. This comes from the definition of Projected BRI in the CBA [VII 7.2.c](https://atlhawksfanatic.github.io/NBA-CBA/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.) where the known value of the National TV payout for the year of interest is added to 1.045 times the non-TV portion of BRI for the previous year. Or in other words, BRI is split into the TV and non-TV portion for every year. The TV portion is known in advance due to the nature of the contract having a specific yearly payout. However, the non-TV portion of BRI covers revenue sources that are variable and not well known for the future. Because of the variable nature, the NBA will simply project forward a 4.5% increase in this amount for the Projected BRI:
 
 $$
-\\ \text{Projected BRI}_t = TV_t + 1.045*\text{non-TV BRI}_{t-1}
-\\ \text{Projected BRI}_t = TV_t + 1.045*({BRI}_{t-1} - {TV}_{t-1})
+\displaylines{
+\text{Projected BRI}_t = TV_t + 1.045*\text{non-TV BRI}_{t-1} \\
+\text{Projected BRI}_t = TV_t + 1.045*({BRI}_{t-1} - {TV}_{t-1})
+}
 $$
 
 And doing a bit more arithmetic gymnastics, we can write BRI as a function of Projected BRI and TV revenues:
@@ -113,9 +115,11 @@ $$
 Going to start adding in some more values, but also keep in mind that \$6,900,684,151 is our Projected BRI amount:
 
 $$
+\displaylines{
 \\ \$114,576,089 = \$69,006,842 + 1.045*({Benefits}_{2016} - \$52,890,000) - {Adjustment}_{2017}
 \\ \$114,576,089 = \$69,006,842 - \$55,270,050 + 1.045*{Benefits}_{2016} - {Adjustment}_{2017}
 \\ \$100,839,297 = 1.045*{Benefits}_{2016} - {Adjustment}_{2017}
+}
 $$
 
 Per the Larry Coon values, the Benefits in [the 2015-16 Season](http://www.cbafaq.com/salarycap11.htm#Q19) were \$212,000,000, which will give us:
