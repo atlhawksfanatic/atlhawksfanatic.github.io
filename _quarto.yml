@@ -6,8 +6,11 @@ project:
 
 website:
   title: "atlhawksfanatic"
-  google-analytics: "G-STPPKD4XNF"
+  site-url: https://atlhawksfanatic.github.io
   repo-url: https://github.com/atlhawksfanatic/atlhawksfanatic.github.io
+  description: "Various information related to the NBA’s Collective Bargaining Agreement (CBA), its Last 2 Minute Reports (L2M), the economics of the NBA, and possibly the Atlanta Hawks"
+  cookie-consent: true
+  google-analytics: "G-STPPKD4XNF"
   navbar:
     right:
       - about.qmd
@@ -102,11 +105,14 @@ website:
         href: https://twitter.com/atlhawksfanatic
 format:
   html:
-    theme: superhero
+    theme:
+      light: cosmo
+      dark: darkly
     reference-location: margin
+    grid:
+      sidebar-width: 350px
     footnotes-hover: true
     css: 
       - styles.css
-
 editor: visual
 
