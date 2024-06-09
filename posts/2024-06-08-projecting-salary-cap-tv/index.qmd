@@ -2,7 +2,8 @@
 title: "Projecting the Salary Cap"
 author: "robert"
 date: 2024-06-08
-page-navigation: true
+description: |
+  A detailed breakdown of the NBA's reported 2025 National TV Deal, how this will affect the Salary Cap, and detailing different scenarios for projecting Salary Cap growth through 2036.
 execute:
   echo: false
   warning: false
