@@ -112,7 +112,8 @@ format:
     grid:
       sidebar-width: 350px
     footnotes-hover: true
+    toc: true
     css: 
       - styles.css
-editor: visual
+editor: source
 
