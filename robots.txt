@@ -1,1 +1,1 @@
-Sitemap: git@work.github.com:atlhawksfanatic/atlhawksfanatic.github.io.git/sitemap.xml
+Sitemap: https://atlhawksfanatic.github.io/sitemap.xml

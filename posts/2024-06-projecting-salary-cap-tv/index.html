@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="robert">
+<meta name="dcterms.date" content="2024-06-01">
+
+<title>atlhawksfanatic - Projecting the Salary Cap</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-STPPKD4XNF"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-STPPKD4XNF', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">atlhawksfanatic</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../NBA-BY-LAWS" rel="" target="">
+ <span class="menu-text">By-Laws</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cbas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">CBAs</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cbas">    
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA" rel="" target="">
+ <span class="dropdown-text">2023</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2017" rel="" target="">
+ <span class="dropdown-text">2017</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2011" rel="" target="">
+ <span class="dropdown-text">2011</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-2005" rel="" target="">
+ <span class="dropdown-text">2005</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-1999" rel="" target="">
+ <span class="dropdown-text">1999</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../NBA-CBA-1995" rel="" target="">
+ <span class="dropdown-text">1995</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-historical-cba-pdfs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Historical CBA PDFs</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-historical-cba-pdfs">    
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2023</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2017</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2011</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">2005</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">1999</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf" rel="" target="">
+ <span class="dropdown-text">1995</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../L2M" rel="" target="">
+ <span class="menu-text">L2M</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/atlhawksfanatic" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/atlhawksfanatic" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Projecting the Salary Cap</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Projecting the Salary Cap</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>robert </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 1, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-BY-LAWS" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">By-Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">CBAs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">2023</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2023-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">2017</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2017" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2017-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">2011</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2011" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2011-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">2005</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-2005" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/2005-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">1999</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-1999" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/1999-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">1995</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NBA-CBA-1995" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Searchable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../research/CBA/1995-NBA-NBPA-Collective-Bargaining-Agreement.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historical PDF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../L2M" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L2M</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+<div class="page-columns page-full"><p>The last time there was this much uncertainty over the NBA Salary Cap (SC) projections was almost ten years ago when the current national TV contract was finalized. That National TV contract was for 9 Seasons starting with the 2016-17 Season at $2.1B – a massive increase from the $1.035B in the preceding season. It will pay out a final $3.1B in its final Season, 2024-25<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, after which the NBA will transition to its subsequent National TV contract that will be finalized this Summer. As of right now, only vague financial figures have been reported on the new National TV contract with the <a href="https://www.wsj.com/business/media/nba-nears-76-billion-tv-deal-a-defining-moment-for-media-and-sports-4e8d762c">Wall Street Journal</a>. This reporting indicates deals with three separate media companies, covering 11 Seasons each, and a total compensation of $76B (an average annual compensation about $6.9B). There is no ink to be dried on the contracts yet, yet that hasn’t stopped the flow of outrageous NBA projections. As an example, we have <a href="https://x.com/KeithSmithNBA/status/1793293186405683279">Spotrac</a> (Keith Smith) suggesting the SC will surpass the $200M mark by the 2029 season. And <a href="https://www.nytimes.com/athletic/5510838/2024/05/24/nba-media-rights-deal-player-salary-cba-contract/">The Athletic</a> (Mike Vorkunov) suggests a $100+M Maximum annual salary in 2032! That would imply a $302M SC!</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;I refer to an NBA Season by the year it ends in. In other words, the 2024-25 Season will be referred to as 2025 Season.</p></li></div></div>
+<p>Crazy, huh?</p>
+<p>Well, maybe but I’m the bearer of bland news. When the last National NBA TV Contract <a href="https://x.com/RichSandomir/status/518943729152163840">was being</a> finalized, <a href="https://www.si.com/nba/2014/10/06/new-nba-tv-deal-worth-24-billion">reports</a> flew <a href="https://www.sportsmediawatch.com/2014/10/nba-tv-deal-espn-abc-tnt-nine-year-deal-2025-24-billion-lockout/">furiously</a> of a <a href="https://www.sportsbusinessjournal.com/Daily/Issues/2014/10/06/Media/NBA-media.aspx">9-year</a> $24B <a href="https://www.usatoday.com/story/sports/nba/2014/10/05/nba-tv-deal-espn-turner/16790187/">total value</a> at the time. Ultimately, the WNBA share was baked into that reported number to the tune of $600M and the true total value <a href="https://www.espn.com/nba/story/_/id/11654981">was $23.4B</a>.</p>
+<p>While I am sure that most reports that are vaguely aware of the Collective Bargaining Agreement (CBA) know that the SC is based on Basketball Related Income (BRI), I am less sure about how many other details about the SC they are aware of. Like what else it depends on and the historical trends of these components.</p>
+<p>Let’s have a refresher on how the SC is calculated. Then we can take a stroll down memory lane from the last time a National TV deal came into effect and what was problematic about SC projections at that time. We’ll close out with what some reasonable expectations of the future SC should be. If you’re impatient and just want a one figure takeaway then jump to this <a href="#fig-proj-sc">Figure&nbsp;5</a>.</p>
+<section id="how-is-the-salary-cap-created" class="level1 page-columns page-full">
+<h1>How is the Salary Cap Created?</h1>
+<p>When a mommy Salary and a daddy Cap love each other very much…err sorry that’s something else.</p>
+<p>The SC is a mechanism that helps ensure that the player’s receive their Designated Share that is <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#designated-share-arrangement.">between 49-51%</a> of BRI for a given season. One reason the SC exists is because player contracts are for guaranteed fixed amounts but the revenues in a year are not guaranteed (think COVID when ticket revenues went to 0 for an entire post-season). The SC attempts to smooth out the year-over-year fluctuations in BRI to ensure the Designated Share is met, but anytime there are random variables involved there will be some margin of error.</p>
+<p>The literal section of the CBA that defines the SC is <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#salary-cap-minimum-team-salary-tax-level-apron-levels-and-draft-pick-penalty.">VII.2.a.1</a> which can be boiled down to an arithmetic formula based on four variables: Projected Basketball Related Income (<span class="math inline">\(\text{PBRI}\)</span>); Projected Benefits (<span class="math inline">\(\text{PBen}\)</span>); the previous Season’s adjustment (<span class="math inline">\(\text{Adj}\)</span>); and the Number of NBA Teams (<span class="math inline">\(\text{\#Teams}\)</span>):</p>
+<p><span id="eq-sc-calc"><span class="math display">\[
+\text{SC}_t = \frac{0.4474*\text{PBRI}_t - \text{PBen}_t}{\text{\# of teams (30)}} + \frac{\text{Adj}_t}{\text{\# of teams (30)}}
+\tag{1}\]</span></span></p>
+<p>In this mathematical notation, the subscript <span class="math inline">\(t\)</span> references the Season in question. But let’s further unpack this equation starting with the variables in reverse order which is roughly related to their impact.</p>
+<section id="teams" class="level2">
+<h2 class="anchored" data-anchor-id="teams">Teams</h2>
+<p>The <span class="math inline">\(\text{\#Teams}\)</span> is pretty much the number of NBA teams for the Season in question, which has been 30 ever since the 2006 Season which was two years after the Charlotte <del>Hornets</del> Bobcats were created. See, it’s pretty much the number of teams in the NBA except when expansion happens where the NBA has a grace period of two Seasons for expansion teams. But aside from this quirk, it is a fairly straight-forward variable.</p>
+</section>
+<section id="adjustment" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="adjustment">Adjustment</h2>
+<div class="page-columns page-full"><p>The <span class="math inline">\(\text{Adj}_t\)</span> is typically 0 due to the escrow system<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, but this refers to the situation where either 1) the NBA collectively fails to pay out the guaranteed share of BRI in Salaries and Benefits (shortfall) or 2) the players were paid more in Salaries and Benefits than their guaranteed share of BRI and the escrow amount does not make up this difference (overage). A typical NBA contract will have 10% of its total Compensation held in escrow for a given Season which serves as one mechanism to enforce the guaranteed BRI share for the players at the end of a Salary Cap year. If Total Salaries and Benefits is more than the guaranteed share of BRI for the players, then the escrow is used to pay back the NBA to ensure the guaranteed share is met. Typically, some portion of the escrow will be returned to both parties to meet the guaranteed share. However, sometimes the escrow amount is not enough to repay the NBA and this situation is referred to as an overage (ie, the NBA paid over their intended amount) which results in player’s receiving more than their guaranteed share. The NBA does not go back and recuperate this amount from the players, instead they adjust the next SC downward by this amount (<span class="math inline">\(\text{Adj}\)</span>) as a way to artificially make up for the over payment. The <span class="math inline">\(\text{Adj}\)</span> would be a negative number in this case.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;The latest 2023 CBA changed the title of the previous <a href="https://atlhawksfanatic.github.io/NBA-CBA-2017/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#escrow-and-tax-arrangement.">Escrow and Tax Arrangement</a> to the <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#designated-share-arrangement.">Designated Share Agreement</a> and escrow is hardly mentioned in the 2023 CBA. But Designated Share Agreement is a mouthful and I feel like there is not a big enough difference for me to not refer to it as simply escrow.</p></li></div></div>
+<p>In the other situation where the players did not receive their full share, the NBA will simply cut a check to the NBPA that satisfies the guaranteed share of BRI to distribute to their players. It is a shortfall from the NBA’s perspective of not meeting the guaranteed share of BRI. When this happens that amount to makeup for the shortfall is the <span class="math inline">\(\text{Adj}\)</span> and is a positive value that acts to push the SC up more so there isn’t a cycle of continual shortfalls. But in general, the escrow system functions pretty well and this amount is typically 0.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-adj" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-adj-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Historical Adjustments to Salary Cap</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="projected-benefits" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="projected-benefits">Projected Benefits</h2>
+<p>There are two components to the Designated Share for Players: Salaries and Benefits. The <span class="math inline">\(\text{PBen}_t\)</span> is an estimate of the Benefits that are expected to be paid out from BRI. <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/benefits.html">Benefits</a> include things like player’s pensions, 401(k), health insurance, playoff payouts, IST monies, <a href="http://www.cbafaq.com/salarycap.htm#Q22">that weird thing</a> for Veteran Minimum Contracts with more than 3 years of experience where Teams only pay a fraction of the Salary and the rest of it is paid for by the NBA, etc. Benefits typically make up somewhere between 4-10% of the Designated Share for Players, so it’s an important component but Salaries are the real bread and butter for the players. <span class="math inline">\(\text{PBen}_t\)</span> does not include any Benefits paid to Expansion Teams in their first two Seasons, keeping a theme with how Expansion is handled.</p>
+<p>The method for estimating <span class="math inline">\(\text{PBen}\)</span> is outlined in <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/benefits.html#projected-benefits.">Article IX.8.a-c</a> which basically boils down to adding on 4.5% growth to the previous Season’s non-BRI tied Benefits and then adding in the BRI-tied benefits. In 2011, the NBPA negotiated a requirement of the NBA to take at least 1% of BRI and place it into a Team Funding Pool, <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/benefits.html#additional-player-benefits.">Additional Player Benefits</a>, which created a new wrinkle in how <span class="math inline">\(\text{PBen}\)</span> are calculated than in years prior to this. But effectively one can think of Benefits as having two components to it: the share that comes from 1% of BRI and then the residuals of that amount which can form how we think about <span class="math inline">\(\text{PBen}\)</span>:</p>
+<p><span class="math display">\[
+\text{PBen}_t = 0.01*\text{PBRI}_t + 1.045*\text{Residual Benefits}_{t-1}
+\]</span></p>
+<div class="page-columns page-full"><p>Or in plain English, use the <span class="math inline">\(\text{PBRI}\)</span> for the Season in question (we’ll describe that process in <a href="#sec-pbri">Section&nbsp;1.4</a>) and add that on to what the previous Season’s non-BRI related Benefits were with a 4.5% growth factor to it. This 4.5% growth factor is fairly common throughout the CBA as best seen as the maximum amount of raises that are available to non-Qualifying Free Agents<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Another nerdy way to point out how <span class="math inline">\(\text{PBen}\)</span> can be represented is to reconstruct the Residual Benefits component in terms of just BRI and actual Benefits from the previous Season:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Don’t you dare call these non-bird rights because <a href="https://atlhawksfanatic.github.io/posts/2023-10-29-bird-rights-not-real/">bird rights aren’t real</a>.</p></li></div></div>
+<p><span class="math display">\[
+\text{PBen}_t = 0.01*\text{PBRI}_t + 1.045*(\text{Benefits}_{t-1} - 0.01*{BRI}_{t-1})
+\]</span></p>
+<p>One complicating factor with calculating the Residual Benefits though is that the Additional Players Benefits were used as a bit of a punching bag in the COVID Seasons. Recall, this is the portion that since 2011 it had 1% of BRI placed into it for various NBPA funded programs. In the COVID Seasons (2020-2023), when the Escrow system (which was substantially increased beyond the 10% for the Seasons in question) did not sufficiently compensate the Owners to meet their guaranteed share of BRI the Additional Player Benefits were used to make up the difference. To be more nerdy and more accurate, the <span class="math inline">\(\text{PBen}\)</span> should be thought of as:</p>
+<p><span class="math display">\[
+\text{PBen}_t = 0.01*\text{PBRI}_t + 1.045*(\text{Benefits}_{t-1} - 0.01*{BRI}_{t-1} + \text{COVID}_{t-1})
+\]</span></p>
+<p>Unfortunately, publicly available information on the COVID payments is sparse aside from some breadcrumbs at <a href="http://www.cbafaq.com/salarycap.htm#Q15">Larry Coon’s CBAFAQ</a>. But historically, there is a clear jump in Benefits paid out in Seasons after the 1% funding came into effect in the 2012 Season.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-benefits" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-benefits-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Historical Benefits</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Keep in mind that estimating the Additional or Residual Benefits in 2021, 2022, and 2023 is a difficult task without knowing the COVID payments and they are therefore not shown. Typically the Additional Benefits is simply 1% of BRI for that Season and these did not exist prior to 2012.</p>
+<p>The time period that we have strong confidence that the Additional Benefits were unaffected by COVID payments indicated an annual growth rate of approximately 14% (2012 to 2019) which topped out at a high of $277M.</p>
+</section>
+<section id="sec-pbri" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="sec-pbri">Projected BRI</h2>
+<p><span class="math inline">\(\text{PBRI}\)</span> is an attempt to break away some of the fixed and large quantities of revenues for the NBA from the unknown revenue streams that are more variable. But first a small soap-box about BRI. BRI is frequently referred to as NBA revenues. This is not accurate. I’m not going to spill much ink here but instead ask you to glance through its <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#definitions.-1">definition in the CBA</a> that goes on and on. But take notice of sections that have phrasing like “Fifty percent (50%) of the gross proceeds, net of fifty percent (50%) of Taxes, and net of fifty percent (50%)”. BRI is a legal definition. It is not an accounting or economic definition of income or revenue. Actual revenues of the NBA are much larger than BRI. Also notice that this amount does not include any streams of revenue that are generated by Expansion Teams in their first two Seasons, just like <span class="math inline">\(\text{PBen}\)</span>.</p>
+<p>OK back to <span class="math inline">\(\text{PBRI}\)</span>, I think this is straight-forward from a definitional perspective. One thing to keep in mind is that the National TV contract for the NBA is a fixed and known amount for its contract. Once the National TV contract is finalized, there is no reason to <em>not</em> just plug this amount into projections since it is a fixed amount. While there are various other sponsorships and rights deals across the NBA and its teams that may also have a similar fixed payment, the National TV contract is the only contract for the NBA that is handled in such a unique way because it takes up such a large share of BRI.</p>
+<div class="page-columns page-full"><p>BRI for a Season can be stated as its National TV revenue plus its non-National TV BRI. For projecting forward, you use the actual values in the National TV contract but then take the non-National TV BRI and apply that familiar 4.5% growth factor<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> to the other components:</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;The 4.5% growth factor started with the 2005 CBA. The 1995 and 1999 CBA used 8% as the growth factor instead.</p></li></div></div>
+<p><span class="math display">\[
+\text{PBRI}_t = \text{TV}_t + 1.045*\text{non-TV BRI}_{t-1}
+\]</span></p>
+<p>Or if you want to be a nerd about reducing the number of unfamiliar variables:</p>
+<p><span class="math display">\[
+\text{PBRI}_t = \text{TV}_t + 1.045*(\text{BRI}_{t-1} - \text{TV}_{t-1})
+\]</span></p>
+<p><span class="math inline">\(\text{PBRI}\)</span> is by far the most influential of all for SC calculations (and projections). And over time, the National TV deal has, from a long-term view, become an increasingly larger share of BRI. For context, here is the previous Season’s BRI broken apart by National TV and non-TV BRI:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bri-tv" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-bri-tv-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Historical BRI and Components</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The National TV deal has clunky jumps in value due to it typically being a long term contract. There was the <a href="https://www.nytimes.com/2014/10/06/sports/basketball/nba-said-to-be-near-new-tv-deal-for-24-billion.html">9 year deal</a> beginning 2016-17, there was the <a href="http://www.reuters.com/article/2007/06/28/us-nba-idUSN2830146220070628">7 year deal</a> in 2008-09, before that the <a href="https://www.espn.com/nba/news/2002/0122/1315389.html">5 year deal</a> in 2002-03, or the weird times when the NBA <a href="http://www.insidehoops.com/nba-tv-contracts.shtml">separately negotiated broadcast and cable</a> at different times prior to that. It’s importance as a share of BRI has slowly crept up over time from 26% in the 2000 Season to 31% in the 2019 Season and this trend is likely to continue unless there is a marked change in the sports industry.</p>
+</section>
+<section id="forty-four-and-seventy-fourths-percent" class="level2">
+<h2 class="anchored" data-anchor-id="forty-four-and-seventy-fourths-percent">Forty Four and Seventy-Fourths Percent</h2>
+<p>As far as predicting the 2026 Season and future SCs, the 44.74% part of the SC is not a variable. It is simply a fixed value that the NBA and NBPA agreed to and believe this will result in a SC that closely restricts NBA Team spending enough to make the Designated Share. Think for a second, if this value was instead 100% would there be enough teams that would willingly stay under the SC? Yeah, probably not. The NBA and NBPA settled on 44.74% as the appropriate fraction of BRI, but this has only been the case since the 2011 CBA. For some historical context, the previous values used were:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">CBA</th>
+<th style="text-align: center;">Season(s)</th>
+<th style="text-align: center;">PBRI %</th>
+<th style="text-align: center;">Minimum SC</th>
+<th style="text-align: center;">Maximum SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-1995/team-salary-salary-cap-and-minimum-team-salary.html#calculation-of-salary-cap-and-minimum-team-salary.">1995</a></td>
+<td style="text-align: center;">1996</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">$23M</td>
+<td style="text-align: center;">$23M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1995</td>
+<td style="text-align: center;">1997</td>
+<td style="text-align: center;">48.04%</td>
+<td style="text-align: center;">$24.3M</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1995</td>
+<td style="text-align: center;">1998</td>
+<td style="text-align: center;">48.04%</td>
+<td style="text-align: center;">$25M</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-1999/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.">1999</a></td>
+<td style="text-align: center;">1999</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">$30M</td>
+<td style="text-align: center;">$30M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1999</td>
+<td style="text-align: center;">2000</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">$34M</td>
+<td style="text-align: center;">$34M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1999</td>
+<td style="text-align: center;">2001-05</td>
+<td style="text-align: center;">48.04%</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-2005/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.">2005</a></td>
+<td style="text-align: center;">2006</td>
+<td style="text-align: center;">49.5%</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-2005/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.">2005</a></td>
+<td style="text-align: center;">2007-11</td>
+<td style="text-align: center;">51%</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-2011/basketball-related-income-salary-cap-minimum-team-salary-and-escrow-arrangement.html#calculation-of-salary-cap-and-minimum-team-salary.">2011</a></td>
+<td style="text-align: center;">2012</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">$58.044M</td>
+<td style="text-align: center;">$58.044M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2011</td>
+<td style="text-align: center;">2013</td>
+<td style="text-align: center;">44.74%</td>
+<td style="text-align: center;">$58.044M</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2011</td>
+<td style="text-align: center;">2014-21</td>
+<td style="text-align: center;">44.74%</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://pr.nba.com/nba-nbpa-2020-21-season/">COVID MOU</a></td>
+<td style="text-align: center;">2022-23</td>
+<td style="text-align: center;">44.74%</td>
+<td style="text-align: center;"><span class="math inline">\(1.03*\text{SC}_{t-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.1*\text{SC}_{t-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#salary-cap-minimum-team-salary-tax-level-apron-levels-and-draft-pick-penalty.">2023</a></td>
+<td style="text-align: center;">2024-29+</td>
+<td style="text-align: center;">44.74%</td>
+<td style="text-align: center;"><span class="math inline">\(1.03*\text{SC}_{t-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.1*\text{SC}_{t-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Granted, there were a few years within this time period where the SC was literally set to a fixed number due to negotiations or because PBRI did not meet a particular threshold…but it is still a variable here.</p>
+</section>
+<section id="some-minor-adjustments" class="level2">
+<h2 class="anchored" data-anchor-id="some-minor-adjustments">Some Minor Adjustments</h2>
+<p>I kind of lied about how the SC is calculated. But this was because it would be unnecessarily complex for notation. Now that I’ve broken all the components down, I’m comfortable adding this complexity back in.</p>
+<p>The 2023 CBA instituted a minimum and maximum amount that the SC can grow from Season to Season. It must increase by at least 3% from the previous Season, but it cannot increase by more than 10%. Or in nerd words:</p>
+<p><span class="math display">\[
+\text{Actual SC}_t = MAX( 1.03*\text{SC}_t, MIN( 1.10*\text{SC}_t))
+\]</span></p>
+<p>Where <span class="math inline">\(\text{SC}_t\)</span> comes from the very first equation I put down. You still have to calculate it by this method, but then afterwards this 3-10% restriction comes into play. It was an implicit way of guaranteeing that <a href="https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq"><em>smoothing</em></a> would be enforced.</p>
+<p>The other bit of complication comes from the handling of <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/expansion-and-contraction.html">Expansion</a>. In the descriptions of all variables above, Expansion Teams are not included until their third Season. This is definitely true in their first Season seeing as there would be no previous BRI or Benefits amounts to provide any reasonable estimate for the Season in question. But in their second Season they <em>might</em> be included. This will only occur when including the <span class="math inline">\(\text{PBen}\)</span> and <span class="math inline">\(\text{PBRI}\)</span> of the Expansion Team(s) results in a higher SC (still subject to the 10% maximum).</p>
+</section>
+</section>
+<section id="the-current-national-tv-deal" class="level1">
+<h1>The Current National TV Deal</h1>
+<p>The definitive piece on how media speculation was rampant at the time surrounding the 2016-17 National TV deal was from <a href="https://grantland.com/the-triangle/nbas-new-tv-deal-blow-up-the-salary-cap/">Zach Lowe on 2014-10-06</a> when Grantland was still a thing. In that article he describes the looming spike in the SC and how there may be some possible talks about <a href="https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq"><em>smoothing</em></a>. In April of 2015 when the talks of <a href="https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq"><em>smoothing</em></a> ultimately broke down, the NBA released a forecast of SC that expected <a href="https://www.espn.com/nba/story/_/id/12711616/teams-told-nba-salary-cap-hit-100m-2017-18-season">the salary cap to increase from its current $63.1 million figure to $67.1 million next season, $89 million in 2016-17 and $108 million in 2017-18</a>. A supposed jump of $22M was going to happen when the TV deal was introduced and then the following Season there would be a $19M jump would happen again. That memo from the NBA is where the supposed double-spike came from and it was talked about ad nauseam at the time and largely taken as gospel. The actual values for the SC ended up being $70M not $67.1M, then $94.143M not $89M, and finally $99M not $108M.</p>
+<p>The problem was that the NBA projection was built on the premise that teams would not spend beyond the Minimum Team Salary, which would cause a shortfall, which would trigger a large positive <span class="math inline">\(\text{Adj}\)</span> to happen. I outlined these issues in <a href="https://www.peachtreehoops.com/2015/6/10/8200177/nba-salary-cap-tv-deal-max-contract">June of 2015 for Peachtree Hoops</a> to warn people there would be no second cap spike. And for the record, there was no second cap spike.</p>
+<p>The NBA’s 2016 Off-Season was <a href="https://uproxx.com/dimemag/worst-nba-contracts-2016-free-agency-rankings-joakim-noah-luol-deng-dwight-howard/">infamous for its terrible contracts handed out</a>. Teams spent their entire cap space with haste, and then some. I’d say something snarky like <em>“it doesn’t take an economist to figure out that teams will spend their cap space”</em> but it actually does take an economist to point that out, and then it just gets ignored ¯\_(ツ)_/¯</p>
+<section id="relevance-to-2026-and-beyond" class="level2">
+<h2 class="anchored" data-anchor-id="relevance-to-2026-and-beyond">Relevance to 2026 and Beyond</h2>
+<p>Bottom line is that the obvious error in the double-spike projections came from the NBA fiddling around with the <span class="math inline">\(\text{Adj}\)</span>. Do not do that.</p>
+<p>Understanding how the SC is calculated is extremely critical because you can conceptually break it down into a handful of variables that are actually at play. Then, it becomes a bit of a prediction game about each of these individual variables. This means you should never have a non-zero <span class="math inline">\(\text{Adj}\)</span> unless you have a strong reason to diverge from this, like a pandemic or something. Only worry about <span class="math inline">\(\text{\# of teams}\)</span> if expansion happens, but even then you have at least one Season before it impacts the SC at all. Keep your <span class="math inline">\(\text{PBen}_{t}\)</span> amounts reasonable. The most crucial component is <span class="math inline">\(\text{PBRI}_t\)</span> and we know the National TV deal is the largest component within that. So let’s dive into that.</p>
+</section>
+</section>
+<section id="a-reasonable-projection" class="level1 page-columns page-full">
+<h1>A Reasonable Projection</h1>
+<section id="for-the-national-tv-contract" class="level2">
+<h2 class="anchored" data-anchor-id="for-the-national-tv-contract">For the National TV Contract</h2>
+<p>Taking from the <a href="https://www.wsj.com/business/media/nba-nears-76-billion-tv-deal-a-defining-moment-for-media-and-sports-4e8d762c">Wall Street Journal</a> report on the upcoming National TV deal, we have a strong indication that this will be an 11 year deal. The total value appears to be $76B, but likely some portion of this is devoted to the WNBA (was previously 2.5% of the total value). And it is a near certainty that the TV contract will not be flat but instead contains a constant annual increase from Season to Season, but it’s not as obvious what this percentage will be.</p>
+<p>The last contract increased by a flat $125M each Season, starting at $2.1B representing 5.95% of this amount. The contract before that had increased by a flat $30M each Season, which represented about 3.63% of its starting value of $825M. And before that the contract increased at $15M each Season, which was about 2.05% of the starting value of $730M.</p>
+<p>I am fairly certain the National TV contract will continue to have a flat constant raise from its starting value and this will be for 11 Seasons (<span class="math inline">\(T\)</span>). I am less sure about the total value but I imagine the WNBA share will be at least as high as the previous 2.5%, which I will ballpark the WNBA share to double to 5% which gives a rough range of values between $72.2B and $76.0B (<span class="math inline">\(\text{Total Value}\)</span>). I am less certain about what to expect for a flat constant raise over the lifetime of the contract. Will it be at 5.95% of the initial value? Higher? Lower? Not sure, but at least we can pretty easily map out what this contract looks like if we fill in the parameters of Total Value and constant increase amount (as a fraction, <span class="math inline">\(z\)</span>, of initial value). That’s because this is a simple sequence based on the initial value (<span class="math inline">\(X\)</span>):</p>
+<p><span class="math display">\[
+\displaylines{
+\text{Total Value} = \sum_{n=1}^{T} X + z*(n-1)*X \\
+\text{Total Value} = \sum_{n=1}^{T} (1 +z*(n-1))*X \\
+\text{Total Value} = X*(T + z*\frac{T*(T-1)}{2}) \\
+X = \frac{\text{Total Value}}{(T + z*\frac{T*(T-1)}{2})}
+}
+\]</span></p>
+<p>It becomes plug-and-chug at this point. We’re certain that it’s an 11 year deal (<span class="math inline">\(T=11\)</span>). The Total Value will be between $72.2B and $76.0B, let’s just consider those two as a low and high scenario. We can think of the constant increases (<span class="math inline">\(z\)</span>) as the final variable and one with the most uncertainty. The middle ground is to suggest the same value as the current contract (5.95%) and also consider a lower growth (4.50%) and higher growth (7.50%). Crunching these all together gives us 6 possible paths for the National TV deal:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-proj-tv" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-proj-tv-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Projected National TV Contract</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This gives us a projected starting payment in the 2026 Season that ranges from $4.77B to $5.64B and annual increases that range from $241M to $377M.</p>
+</section>
+<section id="salary-cap-projections" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="salary-cap-projections">Salary Cap Projections</h2>
+<div class="page-columns page-full"><p>Keeping with the rules I stated for reasonable projections, let’s put together three different scenarios for SC projections. This will hinge upon the <span class="math inline">\(\text{PBRI}\)</span> growth rate, of which we should have some empirical<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> insight into. We’ve already seen the historical breakdown of BRI and TV contract in <a href="#fig-bri-tv">Figure&nbsp;3</a>, but this figure may be hard to determine the exact values to calculate the growth rate of Non-TV BRI.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;I think an upcoming buzzword in the analytics field is going to be empirical or empiric. I want to get ahead of this trend.</p></li></div></div>
+<p>From the Season ending in 2000 through 2023, Non-TV BRI had an annual growth rate of around 12.69%, however this growth has been slowing down over time. The elephant in the room with projections is the COVID Seasons that affected revenues (attendance) starting in March of 2020 and through roughly around April of 2021 which makes these difficult Seasons to evaluate for financial growth for the NBA. If we only look at the most recent growth in Non-TV BRI from the Season ending in 2023 to the most recent was 6.21%. These are what we will bracket our projections of the SC around: a high of 13% growth, a medium of 9%, and a low of 6%. Let’s also toss in a doomsday scenario of 3% growth to get a wider range. We will also interact these three scenarios of Non-TV growth rate with the medium growth in TV contract but with the high and low Total Value. This results in 8 different paths at which the Salary Cap can grow going forward:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-proj-sc" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-proj-sc-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Projected Salary Caps</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Well alright. My first takeaway is that bickering over the portion of the National TV’s total value that goes to the WNBA is not that important of an issue. You can barely see the difference in the high/low scenario for these different scenarios because there is not much of an actual difference. Year-to-year growth in the SC happens because of growth of each individual component and shifting the WNBA’s share of the Total Value from 2.5% to 5% or even 10% would only affect the initial jump in the cap that smooths out over time. This leads into maybe the bigger takeaway and that is how much of a runway this National TV Deal has for sustaining the maximum 10% growth in SC for the foreseeable future. Going with the full $76B amount in a TV Deal, we can see that even the doomsday scenario in Non-TV BRI growth will see the 10% maximum hit for the next two Seasons from <a href="#tbl-proj-sc">Table&nbsp;1</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-proj-sc" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Salary Cap Project at $76B Total Value</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">season</th>
+<th style="text-align: left;">3%</th>
+<th style="text-align: left;">6%</th>
+<th style="text-align: left;">9%</th>
+<th style="text-align: left;">13%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2024</td>
+<td style="text-align: left;">$136.02M</td>
+<td style="text-align: left;">$136.02M</td>
+<td style="text-align: left;">$136.02M</td>
+<td style="text-align: left;">$136.02M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2025</td>
+<td style="text-align: left;">$140.10M</td>
+<td style="text-align: left;">$140.10M</td>
+<td style="text-align: left;">$140.10M</td>
+<td style="text-align: left;">$141.60M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2026</td>
+<td style="text-align: left;">$154.11M</td>
+<td style="text-align: left;">$154.11M</td>
+<td style="text-align: left;">$154.11M</td>
+<td style="text-align: left;">$155.76M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2027</td>
+<td style="text-align: left;">$169.52M</td>
+<td style="text-align: left;">$169.52M</td>
+<td style="text-align: left;">$169.52M</td>
+<td style="text-align: left;">$171.33M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2028</td>
+<td style="text-align: left;">$177.41M</td>
+<td style="text-align: left;">$186.48M</td>
+<td style="text-align: left;">$186.48M</td>
+<td style="text-align: left;">$188.47M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2029</td>
+<td style="text-align: left;">$183.22M</td>
+<td style="text-align: left;">$201.08M</td>
+<td style="text-align: left;">$205.12M</td>
+<td style="text-align: left;">$207.31M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2030</td>
+<td style="text-align: left;">$188.91M</td>
+<td style="text-align: left;">$211.31M</td>
+<td style="text-align: left;">$225.64M</td>
+<td style="text-align: left;">$228.04M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2031</td>
+<td style="text-align: left;">$194.58M</td>
+<td style="text-align: left;">$221.79M</td>
+<td style="text-align: left;">$248.20M</td>
+<td style="text-align: left;">$250.85M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2032</td>
+<td style="text-align: left;">$200.42M</td>
+<td style="text-align: left;">$232.51M</td>
+<td style="text-align: left;">$272.30M</td>
+<td style="text-align: left;">$275.93M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2033</td>
+<td style="text-align: left;">$206.43M</td>
+<td style="text-align: left;">$243.49M</td>
+<td style="text-align: left;">$291.63M</td>
+<td style="text-align: left;">$303.53M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2034</td>
+<td style="text-align: left;">$212.62M</td>
+<td style="text-align: left;">$254.71M</td>
+<td style="text-align: left;">$312.25M</td>
+<td style="text-align: left;">$333.88M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2035</td>
+<td style="text-align: left;">$219.00M</td>
+<td style="text-align: left;">$266.20M</td>
+<td style="text-align: left;">$334.27M</td>
+<td style="text-align: left;">$367.27M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2036</td>
+<td style="text-align: left;">$225.57M</td>
+<td style="text-align: left;">$277.94M</td>
+<td style="text-align: left;">$357.82M</td>
+<td style="text-align: left;">$403.99M</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Expectations of Non-TV BRI growth are crucial for how the future SC will trend. The upcoming 2025 SC will assuredly not hit the 10% maximum even in the rosiest of scenarios for Non-TV BRI growth, but when the new National TV deal comes into play that maximum will certainly kick in. Where things start to diverge is how long the 10% maximum will continue for. The doomsday scenario (3%) of growth weens off the 10% maximum of SC growth by the 2028 Season. At the lower end scenario (6%), it is the 2029 Season where SC growth slows down. For the medium scenario (9%), the 2033 Season is when SC decelerates from the 10% growth. And for the high growth (13%), SC never slows down from the 10% growth.</p>
+</section>
+</section>
+<section id="wheres-the-growth" class="level1">
+<h1>Where’s the Growth?</h1>
+<p>Understanding how much the SC will grow based on differing scenarios of Non-TV BRI is a mechanical exercise, which is the primary point of this post. There is not much insight to be had from understanding that sustained 6% annual growth in Non-TV BRI will set the NBA’s SC to have 10% growth until 2028. I think people who follow the CBA closely intuitively knew this although they may not have been able to give you a quantitative answer to the SC trajectory. The real value add for an NBA SC practitioner is to determine what we should expect in Non-TV BRI growth.</p>
+<p>Over the past decade, the NBA added new streams of revenue through their <a href="https://finance.yahoo.com/news/nba-jersey-sponsor-patches-working-132237110.html">jersey sponsorship program</a> although it only accounted for approximately $137M of the $1.12B in total sponsorship from the 2018 Season, the first Season they were allowed. The sponsorship category for the NBA was reportedly around $1.5B in 2024 per <a href="https://www.sponsorunited.com/posts/nba-marketing-partnerships-annual-report-2023-24">SponsorUnited</a>, which would be about 5.7% annual growth in the category. Are there other sources of innovation like the jersey patches on the horizon?</p>
+<p>What is the outlook in revenues based on gambling? Headlines of reports indicate vague benefits like<a href="https://www.legalsportsreport.com/25173/aga-survey-mlb-nba-sports-betting/">“Legal Sports Betting Will Give NBA, MLB A $1.7 Billion Revenue Bonanza: AGA Survey”</a>. Wow, that sounds amazing! But as soon as you peel back the survey, you recognize that:</p>
+<blockquote class="blockquote">
+<p>Additional fan engagement will provide an extra $425 million to the NBA. Gaming-related revenue of $160 million takes the NBA total up to $585 million.</p>
+</blockquote>
+<p>Their measures of “fan engagement” are indirect effects for key revenue streams like media rights, sponsorship, merchandise, and ticket sales. We’ve already seen the biggest chunk of a change in media rights, so this amount is not going to be contributing to the future. It’s possible that the extra sponsorships could be the missing link for new innovation in sponsorship. But the merchandise and ticket sales? Frankly, having legalized gambling would only be one small factor of demand in those channels. The actual <strong>direct</strong> effects on revenue from legalized gambling are in the form of TV advertising (which is odd to mention because the NBA is not selling that, the networks that own the TV rights are…), sponsorships, and third-party rights to gambling entities. When you do some more napkin math, this report is indicating an increase in tens of millions of revenue. That’s no small amount, but relative to Non-TV BRI and expanding that by percentages that is a small amount.</p>
+<p>Another potential area for innovation in the sponsorship realm is from international entities. The NBA announced a partnership with <a href="https://www.mediaoffice.abudhabi/en/sport/nba-and-department-of-culture-and-tourism-announce-multiyear-partnership-to-host-first-nba-games-in-united-arab-emirates/">Abu Dhabi</a> to host pre-season games in the country. This is a relatively new development that will certainly add new streams of revenue. But how does this balance with the NBA’s relationship with China and <a href="https://www.bbc.com/news/business-50091931">the fall-out from 2019</a>? The controversy happened only months after the NBA announced a <a href="https://pr.nba.com/nba-tencent-partnership-expansion/">5-year partnership with Tencent</a> to be the exclusive digital rights holder in China. That Tencent deal is up at the end of the 2025 Season and it’s unclear the status of the relationship between the NBA and Tencent, although it appears that by <a href="https://www.nytimes.com/2022/03/31/sports/basketball/nba-china.html">March 2022</a> Tencent ended their boycott of the league that began in October 2019.</p>
+<p>Is VR a new stream for NBA revenues? Possibly a revamp of NBA League Pass when the relationship with Turner ends a new partner can produce the service? Something else?</p>
+<section id="expansion" class="level2">
+<h2 class="anchored" data-anchor-id="expansion">Expansion</h2>
+<p>In Adam Silver’s press conference at the <a href="https://www.nba.com/news/adam-silver-news-conference-2024-nba-finals">2024 NBA Finals</a> the topic of expansion was brought up and Adam did not shy away from the topic. Adam is now turning his attention to expansion and it seems imminent from my reading of the tea leaves. This becomes a bit of a ticking time bomb for deflating the SC, although the decrease is not going to be massive by any stretch.</p>
+<p>The contribution of Non-TV BRI by any expansion team is probably going to be about average, or at least I have no reason to expect it to be much higher or lower than average. If the Non-TV BRI contribution is average, then there’s still going to be a decrease in SC. This just stems from the increase in the denominator of <a href="#eq-sc-calc">Equation&nbsp;1</a> and how the National TV Deal gets split from 30 teams to 31 or 32 teams.</p>
+<p>Let’s just take 2030 as the hypothetical first Season that an expansion team begins to count towards the SC (not just play, that would be 2028 in this hypothetical). Based on the high value of National TV Deal, approximately $98.31M of the SC would be from this. Adding one more team to the league make the National TV Deal contribution $95.14M or a reduction of $3.17M. Adding two more teams would put this value at $92.17M or a reduction of $6.14M. These are not ground-breaking amounts, but they are certainly reductions in what the SC would be without the expansion that spreads National TV Revenues across more teams.</p>
+</section>
+<section id="expectations" class="level2">
+<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<p>It should not be understated the failure of meeting expectations in this upcoming National TV deal. The first rumblings of NBA expectations on the deal came in <a href="https://www.cnbc.com/2021/03/22/nba-is-next-up-for-a-big-rights-increase-and-75-billion-is-the-price.html">March of 2021 from CNBC</a> (Jabari Young) who reported on league expectations:</p>
+<blockquote class="blockquote">
+<p>Early thinking within league circles suggests the NBA will seek a $75 billion rights package, up from its current $24 billion deal, which pays $2.6 billion per year.</p>
+<p>One person familiar with sports media deals said the NBA could get $70.2 billion over nine years, using metrics including total viewer hours, which helps networks determine the value of sports league rights.</p>
+</blockquote>
+<p>While it is not explicit in reporting, the $75B figure is seemingly related to a comparable 9 Season deal or else why would the follow-up paragraph contain estimates of a non-league source refer to a 9 Season contract? Time matters and the apples-to-apples comparison of the nominal values should be annualized. From that perspective, the NBA’s new National TV deal is closer to a 2.6x-ing of the previous one although the upcoming deal contains a new “C” package for Amazon that was not present in the previous deal. This is hard to quantify as the “C” package was cobbled together from portions of local TV rights, which cannibalizes demand. There should be some level of understanding that the upcoming deal is selling “more” of the NBA which would bring down the 2.6x-ing by some portion to account for quantity. But also keep in mind, this was prior to the US economy entering a period of <a href="https://www.bls.gov/charts/consumer-price-index/consumer-price-index-by-category-line-chart.htm">high inflation</a> for a prolonged period of time as March 2021’s 12-month growth in CPI was around 2.6% but this would quickly jump to 5.4% by June of 2021 and then to 8.5% by March of 2022. Adjusting to real terms and doing very loose napkin math, the upcoming deal appears to be closer to a doubling in rights which is well short of the tripling expectation.</p>
+<p>A doubling of rights fees is good for any business. It is, however, not what the NBA appeared to have set out for their expectation in this round of negotiation. This is a failure to meet expectations but not a failure of its business.</p>
+
+
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
