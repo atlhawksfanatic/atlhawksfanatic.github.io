@@ -5,9 +5,12 @@ title: "hello there."
 #   image: img/philips.jpg
 listing:
   contents: posts
+  max-description-length: 324
   sort: "date desc"
+  date-format: iso
   type: default
-  categories: false
+  feed: true
+  categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
