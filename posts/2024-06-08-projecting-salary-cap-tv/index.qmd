@@ -107,6 +107,41 @@ proj_template <- wot |>
          proj_ben_high = 0.01*proj_bri_high + proj_resid) |>
   arrange(growths)
 
+# SC projections
+chey_proj <- proj_template |> 
+  group_split(growths) |> 
+  map(function(x) {
+  temp_low <- temp_high <- rep(NA, nrow(x))
+  temp_low[1] <- temp_high[1] <- as.numeric(x[1,"salary_cap"])
+  for (i in seq_along(temp_low)) {
+    if (i != 1) {
+      ylow <- project_it(as.numeric(x[i,"proj_bri_low"]),
+                         as.numeric(x[i,"proj_ben_low"]),
+                         temp_low[i-1])
+      yhigh <- project_it(as.numeric(x[i,"proj_bri_high"]),
+                          as.numeric(x[i,"proj_ben_high"]),
+                          temp_high[i-1])
+      temp_low[i] <- ylow
+      temp_high[i] <- yhigh
+    } else {
+      
+    }
+  }
+  output <- x |> 
+    select(season, growths) |> 
+    mutate(proj_sc_low = temp_low,
+           proj_sc_high = temp_high)
+  return(output)
+}) |> 
+  bind_rows() |> 
+  pivot_longer(matches("proj"),
+               names_to = "scenario",
+               values_to = "salary_cap") |> 
+  mutate(tv_scene = str_remove(scenario, "proj_sc_"))
+
+gr_label <- scales::percent(gr_scene)
+
+
 
 ```
 
@@ -369,41 +404,8 @@ From the Season ending in 2000 through 2023, Non-TV BRI had an annual growth rat
 
 ```{r proj-sc}
 #| label: fig-proj-sc
-#| fig-cap: "Projected Salary Caps"
 #| classes: preview-image
-
-chey_proj <- proj_template |> 
-  group_split(growths) |> 
-  map(function(x) {
-  temp_low <- temp_high <- rep(NA, nrow(x))
-  temp_low[1] <- temp_high[1] <- as.numeric(x[1,"salary_cap"])
-  for (i in seq_along(temp_low)) {
-    if (i != 1) {
-      ylow <- project_it(as.numeric(x[i,"proj_bri_low"]),
-                         as.numeric(x[i,"proj_ben_low"]),
-                         temp_low[i-1])
-      yhigh <- project_it(as.numeric(x[i,"proj_bri_high"]),
-                          as.numeric(x[i,"proj_ben_high"]),
-                          temp_high[i-1])
-      temp_low[i] <- ylow
-      temp_high[i] <- yhigh
-    } else {
-      
-    }
-  }
-  output <- x |> 
-    select(season, growths) |> 
-    mutate(proj_sc_low = temp_low,
-           proj_sc_high = temp_high)
-  return(output)
-}) |> 
-  bind_rows() |> 
-  pivot_longer(matches("proj"),
-               names_to = "scenario",
-               values_to = "salary_cap") |> 
-  mutate(tv_scene = str_remove(scenario, "proj_sc_"))
-
-gr_label <- scales::percent(gr_scene)
+#| fig-cap: "Projected Salary Caps"
 
 useful_sc |> 
   filter(between(season, 2000, 2024)) |> 
