@@ -5,9 +5,7 @@ date: "30 June 2019"
 output:
   html_document: default
   pdf_document: default
-tags:
-- L2M
-- resources
+category: [L2M, resources]
 layout: post
 ---
 

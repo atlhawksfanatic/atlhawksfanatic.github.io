@@ -2,7 +2,7 @@
 title: Backing Out 2016-17 NBA Financials
 author: "robert"
 date: 2018-03-10
-tags: [finances, salary cap]
+category: [finances, salary cap]
 ---
 
 As I was casually looking through and viewing the panels and videos of the Sloan Sports Analytics Conference the other weekend, I realized a common theme for the 2018 Conference to the previous ones. For the NBA, there were plenty of applications of analytics[^1] to player evaluations, injuries, in-game strategies, and ticket pricing. All of these topics were present in 2018 as they have been throughout the conference's lifetime. However, there was only limited discussion of the NBA's Salary Cap and any analytical applications applied to the Salary Cap was non-existent.

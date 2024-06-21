@@ -2,7 +2,7 @@
 title: "Welcome"
 author: "robert"
 date: 2017-04-30
-categories: [about, news]
+category: [about, news]
 ---
 
 This site is meant to host various information related to the NBA's Collective Bargaining Agreement (CBA), its Last 2 Minute Reports (L2M), the economics of the NBA, and possibly the Atlanta Hawks. If you are looking for opinionated content, then you will be disappointed by this site. My goal is to explain issues within the NBA, disperse information, and provide insight that may not be available elsewhere. Hopefully, you can gain a bit of knowledge from some aspect of this site.

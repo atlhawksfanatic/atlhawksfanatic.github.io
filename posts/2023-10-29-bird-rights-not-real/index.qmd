@@ -1,8 +1,8 @@
 ---
-title: Bird Rights Aren't Real
+title: "Bird Rights Aren't Real"
 author: "robert"
 date: 2023-10-29
-tags: [salary cap]
+category: [salary cap]
 ---
 
 Let's get one thing straight right now: bird rights aren't real.
