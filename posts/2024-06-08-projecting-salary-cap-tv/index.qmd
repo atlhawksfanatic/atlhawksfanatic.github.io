@@ -2,6 +2,7 @@
 title: "Projecting the Salary Cap"
 author: "robert"
 date: 2024-06-08
+date-modified: 2024-06-21
 description: |
   A detailed breakdown of the NBA's reported 2025 National TV Deal, how this will affect the Salary Cap, and detailing different scenarios for projecting Salary Cap growth through 2036.
 execute:
@@ -10,6 +11,7 @@ execute:
 tags: [finances, salary cap]
 ---
 
+*Edit: an earlier version had incorrect values for the minimum growth in the Salary Cap from the 2021 CBA. There is also an expanded discussion on the Expansion section.*
 
 ```{r start, include=FALSE}
 library(tidyverse)
@@ -29,7 +31,7 @@ tv_starting <- function(total_value, z = 0.05, n = 11) {
 
 project_it <- function(PBRI, PBen, SC_last) {
   sc <- (0.4474*PBRI - PBen) / 30
-  project_sc <- max(1.03*SC_last,
+  project_sc <- max(1.00*SC_last,
                     min(1.1*SC_last,
                         sc))
   return(project_sc)
@@ -323,7 +325,7 @@ As far as predicting the 2026 Season and future SCs, the 44.74% part of the SC i
 | 2011 | 2013 | 44.74% | \$58.044M | NA |
 | 2011 | 2014-21 | 44.74% | NA | NA |
 | [COVID MOU](https://pr.nba.com/nba-nbpa-2020-21-season/) | 2022-23 | 44.74% | $1.03*\text{SC}_{t-1}$ | $1.1*\text{SC}_{t-1}$ |
-| [2023](https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#salary-cap-minimum-team-salary-tax-level-apron-levels-and-draft-pick-penalty.) | 2024-29+ | 44.74% | $1.03*\text{SC}_{t-1}$ | $1.1*\text{SC}_{t-1}$ |
+| [2023](https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#salary-cap-minimum-team-salary-tax-level-apron-levels-and-draft-pick-penalty.) | 2024-29+ | 44.74% | $\text{SC}_{t-1}$ | $1.1*\text{SC}_{t-1}$ |
 
 Granted, there were a few years within this time period where the SC was literally set to a fixed number due to negotiations or because PBRI did not meet a particular threshold…but it is still a variable here.
 
@@ -331,13 +333,13 @@ Granted, there were a few years within this time period where the SC was literal
 
 I kind of lied about how the SC is calculated. But this was because it would be unnecessarily complex for notation. Now that I’ve broken all the components down, I’m comfortable adding this complexity back in.
 
-The 2023 CBA instituted a minimum and maximum amount that the SC can grow from Season to Season. It must increase by at least 3% from the previous Season, but it cannot increase by more than 10%. Or in nerd words:
+The 2023 CBA instituted a minimum and maximum amount that the SC can grow from Season to Season. It can never be lower than the previous Season's SC and it cannot increase by more than 10%. Or in nerd words:
 
 $$
-\text{Actual SC}_t = MAX( 1.03*\text{SC}_t, MIN( 1.10*\text{SC}_t))
+\text{Actual SC}_t = MAX( \text{SC}_{t-1}, MIN( 1.10*\text{SC}_{t-1}, \text{SC}_{t}))
 $$
 
-Where $\text{SC}_t$ comes from the very first equation I put down. You still have to calculate it by this method, but then afterwards this 3-10% restriction comes into play. It was an implicit way of guaranteeing that [_smoothing_](https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq) would be enforced.
+Where $\text{SC}_t$ comes from @eq-sc-calc. You still have to calculate it by this method, but then afterwards this 0-10% restriction comes into play. It was an implicit way of guaranteeing that [_smoothing_](https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq) would be enforced.
 
 The other bit of complication comes from the handling of [Expansion](https://atlhawksfanatic.github.io/NBA-CBA-2023/expansion-and-contraction.html). In the descriptions of all variables above, Expansion Teams are not included until their third Season. This is definitely true in their first Season seeing as there would be no previous BRI or Benefits amounts to provide any reasonable estimate for the Season in question. But in their second Season they _might_ be included. This will only occur when including the $\text{PBen}$ and $\text{PBRI}$ of the Expansion Team(s) results in a higher SC (still subject to the 10% maximum).
 
@@ -443,7 +445,7 @@ Well alright. My first takeaway is that bickering over the portion of the Nation
 
 ```{r projection-table}
 #| label: tbl-proj-sc
-#| tbl-cap: "Salary Cap Project at $76B Total Value"
+#| tbl-cap: "Salary Cap Projection at $76B Total Value"
 
 chey_proj |>
   filter(tv_scene == "high") |>
@@ -451,7 +453,7 @@ chey_proj |>
   pivot_wider(names_from = growths, values_from = salary_cap) |>
   select(-scenario, -tv_scene) |>
   mutate_at(vars(-season), scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)) |> 
-  knitr::kable(caption = "Salary Cap Project at $76B Total Value")
+  knitr::kable(caption = "Salary Cap Projection at $76B Total Value")
 ```
 
 Expectations of Non-TV BRI growth are crucial for how the future SC will trend. The upcoming 2025 SC will assuredly not hit the 10% maximum even in the rosiest of scenarios for Non-TV BRI growth, but when the new National TV deal comes into play that maximum will certainly kick in. Where things start to diverge is how long the 10% maximum will continue for. The doomsday scenario (`r scales::percent(gr_scene["Doom"])`) of growth weens off the 10% maximum of SC growth by the 2028 Season. At the lower end scenario (`r scales::percent(gr_scene["Low"])`), it is the 2029 Season where SC growth slows down. For the medium scenario (`r scales::percent(gr_scene["Medium"])`), the 2033 Season is when SC decelerates from the 10% growth. And for the high growth (`r scales::percent(gr_scene["High"])`), SC never slows down from the 10% growth.
@@ -478,7 +480,28 @@ In Adam Silver's press conference at the [2024 NBA Finals](https://www.nba.com/n
 
 The contribution of Non-TV BRI by any expansion team is probably going to be about average, or at least I have no reason to expect it to be much higher or lower than average. If the Non-TV BRI contribution is average, then there's still going to be a decrease in SC. This just stems from the increase in the denominator of @eq-sc-calc and how the National TV Deal gets split from 30 teams to 31 or 32 teams.
 
-Let's just take 2030 as the hypothetical first Season that an expansion team begins to count towards the SC (not just play, that would be 2028 in this hypothetical). Based on the high value of National TV Deal, approximately `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 30) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` of the SC would be from this. Adding one more team to the league make the National TV Deal contribution `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 31) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` or a reduction of `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value*(1/30 - 1/31)) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()`. Adding two more teams would put this value at `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 32) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` or a reduction of `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value*(1/30 - 1/32)) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()`. These are not ground-breaking amounts, but they are certainly reductions in what the SC would be without the expansion that spreads National TV Revenues across more teams.
+Let's just take 2030 as the hypothetical first Season that an expansion team begins to count towards the SC (not just play, that would be 2028 in this hypothetical). Based on the high value of National TV Deal, approximately `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 30) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` of the SC would be from this. Adding one more team to the league make the National TV Deal contribution `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 31) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` or a reduction of `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value*(1/30 - 1/31)) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()`. Adding two more teams would put this value at `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value / 32) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()` or a reduction of `r wot |> filter(season == 2030, z == "Medium", tv == "High") |> mutate(hi = 0.4474*value*(1/30 - 1/32)) |> pull(hi) |> scales::label_currency(scale_cut = scales::cut_short_scale(), accuracy = 0.01)()`. These are not ground-breaking amounts, but they are certainly reductions in what the SC would be without the expansion that spreads National TV Revenues across more teams. For additional reference, @tbl-proj-exp provides what these same values of reduction in SC from spreading the National TV BRI over more expansion teams.
+
+```{r expansion-table}
+#| label: tbl-proj-exp
+#| tbl-cap: "Reduction in Salary Cap from Expansion at $76B Total Value"
+
+wot |>
+  filter(z == "Medium", tv == "High") |>
+  mutate(one_team = 0.4474*value*(1/30 - 1/31),
+         two_team = 0.4474*value*(1/30 - 1/32),
+         three_team = 0.4474*value*(1/30 - 1/33),
+         four_team = 0.4474*value*(1/30 - 1/34)) |>
+  select(season, "One Expansion Team" = one_team, 
+         "Two Expansion Teams" = two_team,
+         "Three Expansion Teams" = three_team,
+         "Four Expansion Teams" = four_team) |>
+  mutate_at(vars(-season),
+            scales::label_currency(scale_cut = scales::cut_short_scale(),
+                                   accuracy = 0.01)) |> 
+  knitr::kable(caption = "Reduction in Salary Cap from Expansion at $76B Total Value")
+```
+
 
 ## Expectations
 
