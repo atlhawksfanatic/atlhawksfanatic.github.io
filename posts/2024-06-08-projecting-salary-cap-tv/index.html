@@ -247,6 +247,12 @@ cookieconsent.run({
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">June 21, 2024</p>
+      </div>
+    </div>
       
     </div>
     
@@ -465,6 +471,7 @@ cookieconsent.run({
 
 
 
+<p><em>Edit: an earlier version had incorrect values for the minimum growth in the Salary Cap from the 2021 CBA. There is also an expanded discussion on the Expansion section.</em></p>
 <div class="page-columns page-full"><p>The last time there was this much uncertainty over the NBA Salary Cap (SC) projections was almost ten years ago when the current national TV contract was finalized. That National TV contract was for 9 Seasons starting with the 2016-17 Season at $2.1B – a massive increase from the $1.035B in the preceding season. It will pay out a final $3.1B in its final Season, 2024-25<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, after which the NBA will transition to its subsequent National TV contract that will be finalized this Summer. As of right now, only vague financial figures have been reported on the new National TV contract with the <a href="https://www.wsj.com/business/media/nba-nears-76-billion-tv-deal-a-defining-moment-for-media-and-sports-4e8d762c">Wall Street Journal</a>. This reporting indicates deals with three separate media companies, covering 11 Seasons each, and a total compensation of $76B (an average annual compensation about $6.9B). There is no ink to be dried on the contracts yet, yet that hasn’t stopped the flow of outrageous NBA projections. As an example, we have <a href="https://x.com/KeithSmithNBA/status/1793293186405683279">Spotrac</a> (Keith Smith) suggesting the SC will surpass the $200M mark by the 2029 season. And <a href="https://www.nytimes.com/athletic/5510838/2024/05/24/nba-media-rights-deal-player-salary-cba-contract/">The Athletic</a> (Mike Vorkunov) suggests a $100+M Maximum annual salary in 2032! That would imply a $302M SC!</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;I refer to an NBA Season by the year it ends in. In other words, the 2024-25 Season will be referred to as 2025 Season.</p></li></div></div>
 <p>Crazy, huh?</p>
 <p>Well, maybe but I’m the bearer of bland news. When the last National NBA TV Contract <a href="https://x.com/RichSandomir/status/518943729152163840">was being</a> finalized, <a href="https://www.si.com/nba/2014/10/06/new-nba-tv-deal-worth-24-billion">reports</a> flew <a href="https://www.sportsmediawatch.com/2014/10/nba-tv-deal-espn-abc-tnt-nine-year-deal-2025-24-billion-lockout/">furiously</a> of a <a href="https://www.sportsbusinessjournal.com/Daily/Issues/2014/10/06/Media/NBA-media.aspx">9-year</a> $24B <a href="https://www.usatoday.com/story/sports/nba/2014/10/05/nba-tv-deal-espn-turner/16790187/">total value</a> at the time. Ultimately, the WNBA share was baked into that reported number to the tune of $600M and the true total value <a href="https://www.espn.com/nba/story/_/id/11654981">was $23.4B</a>.</p>
@@ -654,7 +661,7 @@ cookieconsent.run({
 <td style="text-align: left;"><a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/basketball-related-income-salary-cap-minimum-team-salary-tax-level-apron-levels-and-designated-share-arrangement.html#salary-cap-minimum-team-salary-tax-level-apron-levels-and-draft-pick-penalty.">2023</a></td>
 <td style="text-align: center;">2024-29+</td>
 <td style="text-align: center;">44.74%</td>
-<td style="text-align: center;"><span class="math inline">\(1.03*\text{SC}_{t-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{SC}_{t-1}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(1.1*\text{SC}_{t-1}\)</span></td>
 </tr>
 </tbody>
@@ -664,11 +671,11 @@ cookieconsent.run({
 <section id="some-minor-adjustments" class="level2">
 <h2 class="anchored" data-anchor-id="some-minor-adjustments">Some Minor Adjustments</h2>
 <p>I kind of lied about how the SC is calculated. But this was because it would be unnecessarily complex for notation. Now that I’ve broken all the components down, I’m comfortable adding this complexity back in.</p>
-<p>The 2023 CBA instituted a minimum and maximum amount that the SC can grow from Season to Season. It must increase by at least 3% from the previous Season, but it cannot increase by more than 10%. Or in nerd words:</p>
+<p>The 2023 CBA instituted a minimum and maximum amount that the SC can grow from Season to Season. It can never be lower than the previous Season’s SC and it cannot increase by more than 10%. Or in nerd words:</p>
 <p><span class="math display">\[
-\text{Actual SC}_t = MAX( 1.03*\text{SC}_t, MIN( 1.10*\text{SC}_t))
+\text{Actual SC}_t = MAX( \text{SC}_{t-1}, MIN( 1.10*\text{SC}_{t-1}, \text{SC}_{t}))
 \]</span></p>
-<p>Where <span class="math inline">\(\text{SC}_t\)</span> comes from the very first equation I put down. You still have to calculate it by this method, but then afterwards this 3-10% restriction comes into play. It was an implicit way of guaranteeing that <a href="https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq"><em>smoothing</em></a> would be enforced.</p>
+<p>Where <span class="math inline">\(\text{SC}_t\)</span> comes from <a href="#eq-sc-calc">Equation&nbsp;1</a>. You still have to calculate it by this method, but then afterwards this 0-10% restriction comes into play. It was an implicit way of guaranteeing that <a href="https://youtu.be/6Whgn_iE5uc?si=fIbybvHWxQdYn0Jq"><em>smoothing</em></a> would be enforced.</p>
 <p>The other bit of complication comes from the handling of <a href="https://atlhawksfanatic.github.io/NBA-CBA-2023/expansion-and-contraction.html">Expansion</a>. In the descriptions of all variables above, Expansion Teams are not included until their third Season. This is definitely true in their first Season seeing as there would be no previous BRI or Benefits amounts to provide any reasonable estimate for the Season in question. But in their second Season they <em>might</em> be included. This will only occur when including the <span class="math inline">\(\text{PBen}\)</span> and <span class="math inline">\(\text{PBRI}\)</span> of the Expansion Team(s) results in a higher SC (still subject to the 10% maximum).</p>
 </section>
 </section>
@@ -730,7 +737,7 @@ X = \frac{\text{Total Value}}{(T + z*\frac{T*(T-1)}{2})}
 <div class="cell-output-display">
 <div id="tbl-proj-sc" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Salary Cap Project at $76B Total Value</caption>
+<caption>Table&nbsp;1: Salary Cap Projection at $76B Total Value</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">season</th>
@@ -750,84 +757,84 @@ X = \frac{\text{Total Value}}{(T + z*\frac{T*(T-1)}{2})}
 </tr>
 <tr class="even">
 <td style="text-align: right;">2025</td>
-<td style="text-align: left;">$140.10M</td>
-<td style="text-align: left;">$140.10M</td>
-<td style="text-align: left;">$140.10M</td>
+<td style="text-align: left;">$136.02M</td>
+<td style="text-align: left;">$136.02M</td>
+<td style="text-align: left;">$137.61M</td>
 <td style="text-align: left;">$141.60M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2026</td>
-<td style="text-align: left;">$154.11M</td>
-<td style="text-align: left;">$154.11M</td>
-<td style="text-align: left;">$154.11M</td>
+<td style="text-align: left;">$149.62M</td>
+<td style="text-align: left;">$149.62M</td>
+<td style="text-align: left;">$151.37M</td>
 <td style="text-align: left;">$155.76M</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2027</td>
-<td style="text-align: left;">$169.52M</td>
-<td style="text-align: left;">$169.52M</td>
-<td style="text-align: left;">$169.52M</td>
+<td style="text-align: left;">$164.59M</td>
+<td style="text-align: left;">$164.59M</td>
+<td style="text-align: left;">$166.50M</td>
 <td style="text-align: left;">$171.33M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2028</td>
 <td style="text-align: left;">$177.41M</td>
-<td style="text-align: left;">$186.48M</td>
-<td style="text-align: left;">$186.48M</td>
+<td style="text-align: left;">$181.04M</td>
+<td style="text-align: left;">$183.15M</td>
 <td style="text-align: left;">$188.47M</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2029</td>
 <td style="text-align: left;">$183.22M</td>
-<td style="text-align: left;">$201.08M</td>
-<td style="text-align: left;">$205.12M</td>
+<td style="text-align: left;">$199.15M</td>
+<td style="text-align: left;">$201.47M</td>
 <td style="text-align: left;">$207.31M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2030</td>
 <td style="text-align: left;">$188.91M</td>
 <td style="text-align: left;">$211.31M</td>
-<td style="text-align: left;">$225.64M</td>
+<td style="text-align: left;">$221.62M</td>
 <td style="text-align: left;">$228.04M</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2031</td>
-<td style="text-align: left;">$194.58M</td>
+<td style="text-align: left;">$194.47M</td>
 <td style="text-align: left;">$221.79M</td>
-<td style="text-align: left;">$248.20M</td>
+<td style="text-align: left;">$243.78M</td>
 <td style="text-align: left;">$250.85M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2032</td>
-<td style="text-align: left;">$200.42M</td>
+<td style="text-align: left;">$199.87M</td>
 <td style="text-align: left;">$232.51M</td>
-<td style="text-align: left;">$272.30M</td>
+<td style="text-align: left;">$268.15M</td>
 <td style="text-align: left;">$275.93M</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2033</td>
-<td style="text-align: left;">$206.43M</td>
+<td style="text-align: left;">$205.09M</td>
 <td style="text-align: left;">$243.49M</td>
 <td style="text-align: left;">$291.63M</td>
 <td style="text-align: left;">$303.53M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2034</td>
-<td style="text-align: left;">$212.62M</td>
+<td style="text-align: left;">$210.11M</td>
 <td style="text-align: left;">$254.71M</td>
 <td style="text-align: left;">$312.25M</td>
 <td style="text-align: left;">$333.88M</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2035</td>
-<td style="text-align: left;">$219.00M</td>
+<td style="text-align: left;">$214.89M</td>
 <td style="text-align: left;">$266.20M</td>
 <td style="text-align: left;">$334.27M</td>
 <td style="text-align: left;">$367.27M</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2036</td>
-<td style="text-align: left;">$225.57M</td>
+<td style="text-align: left;">$219.41M</td>
 <td style="text-align: left;">$277.94M</td>
 <td style="text-align: left;">$357.82M</td>
 <td style="text-align: left;">$403.99M</td>
@@ -855,7 +862,111 @@ X = \frac{\text{Total Value}}{(T + z*\frac{T*(T-1)}{2})}
 <h2 class="anchored" data-anchor-id="expansion">Expansion</h2>
 <p>In Adam Silver’s press conference at the <a href="https://www.nba.com/news/adam-silver-news-conference-2024-nba-finals">2024 NBA Finals</a> the topic of expansion was brought up and Adam did not shy away from the topic. Adam is now turning his attention to expansion and it seems imminent from my reading of the tea leaves. This becomes a bit of a ticking time bomb for deflating the SC, although the decrease is not going to be massive by any stretch.</p>
 <p>The contribution of Non-TV BRI by any expansion team is probably going to be about average, or at least I have no reason to expect it to be much higher or lower than average. If the Non-TV BRI contribution is average, then there’s still going to be a decrease in SC. This just stems from the increase in the denominator of <a href="#eq-sc-calc">Equation&nbsp;1</a> and how the National TV Deal gets split from 30 teams to 31 or 32 teams.</p>
-<p>Let’s just take 2030 as the hypothetical first Season that an expansion team begins to count towards the SC (not just play, that would be 2028 in this hypothetical). Based on the high value of National TV Deal, approximately $98.31M of the SC would be from this. Adding one more team to the league make the National TV Deal contribution $95.14M or a reduction of $3.17M. Adding two more teams would put this value at $92.17M or a reduction of $6.14M. These are not ground-breaking amounts, but they are certainly reductions in what the SC would be without the expansion that spreads National TV Revenues across more teams.</p>
+<p>Let’s just take 2030 as the hypothetical first Season that an expansion team begins to count towards the SC (not just play, that would be 2028 in this hypothetical). Based on the high value of National TV Deal, approximately $98.31M of the SC would be from this. Adding one more team to the league make the National TV Deal contribution $95.14M or a reduction of $3.17M. Adding two more teams would put this value at $92.17M or a reduction of $6.14M. These are not ground-breaking amounts, but they are certainly reductions in what the SC would be without the expansion that spreads National TV Revenues across more teams. For additional reference, <a href="#tbl-proj-exp">Table&nbsp;2</a> provides what these same values of reduction in SC from spreading the National TV BRI over more expansion teams.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-proj-exp" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Reduction in Salary Cap from Expansion at $76B Total Value</caption>
+<colgroup>
+<col style="width: 7%">
+<col style="width: 21%">
+<col style="width: 22%">
+<col style="width: 24%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">season</th>
+<th style="text-align: left;">One Expansion Team</th>
+<th style="text-align: left;">Two Expansion Teams</th>
+<th style="text-align: left;">Three Expansion Teams</th>
+<th style="text-align: left;">Four Expansion Teams</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2026</td>
+<td style="text-align: left;">$2.56M</td>
+<td style="text-align: left;">$4.96M</td>
+<td style="text-align: left;">$7.22M</td>
+<td style="text-align: left;">$9.34M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2027</td>
+<td style="text-align: left;">$2.71M</td>
+<td style="text-align: left;">$5.26M</td>
+<td style="text-align: left;">$7.65M</td>
+<td style="text-align: left;">$9.90M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2028</td>
+<td style="text-align: left;">$2.87M</td>
+<td style="text-align: left;">$5.55M</td>
+<td style="text-align: left;">$8.08M</td>
+<td style="text-align: left;">$10.45M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2029</td>
+<td style="text-align: left;">$3.02M</td>
+<td style="text-align: left;">$5.85M</td>
+<td style="text-align: left;">$8.51M</td>
+<td style="text-align: left;">$11.01M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2030</td>
+<td style="text-align: left;">$3.17M</td>
+<td style="text-align: left;">$6.14M</td>
+<td style="text-align: left;">$8.94M</td>
+<td style="text-align: left;">$11.57M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2031</td>
+<td style="text-align: left;">$3.32M</td>
+<td style="text-align: left;">$6.44M</td>
+<td style="text-align: left;">$9.37M</td>
+<td style="text-align: left;">$12.12M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2032</td>
+<td style="text-align: left;">$3.48M</td>
+<td style="text-align: left;">$6.74M</td>
+<td style="text-align: left;">$9.80M</td>
+<td style="text-align: left;">$12.68M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2033</td>
+<td style="text-align: left;">$3.63M</td>
+<td style="text-align: left;">$7.03M</td>
+<td style="text-align: left;">$10.23M</td>
+<td style="text-align: left;">$13.23M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2034</td>
+<td style="text-align: left;">$3.78M</td>
+<td style="text-align: left;">$7.33M</td>
+<td style="text-align: left;">$10.66M</td>
+<td style="text-align: left;">$13.79M</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2035</td>
+<td style="text-align: left;">$3.93M</td>
+<td style="text-align: left;">$7.62M</td>
+<td style="text-align: left;">$11.09M</td>
+<td style="text-align: left;">$14.35M</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2036</td>
+<td style="text-align: left;">$4.09M</td>
+<td style="text-align: left;">$7.92M</td>
+<td style="text-align: left;">$11.51M</td>
+<td style="text-align: left;">$14.90M</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="expectations" class="level2">
 <h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
