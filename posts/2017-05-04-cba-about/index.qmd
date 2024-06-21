@@ -2,7 +2,7 @@
 title: CBA About
 author: "robert"
 date: 2017-05-04
-category: [CBA, resources]
+categories: [CBA, resources]
 ---
 
 If you're interested in reading the NBA's Collective Bargaining Agreement (CBA), then go to [here immediately](http://atlhawksfanatic.github.io/NBA-CBA/). If not, continue reading.

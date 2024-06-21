@@ -2,7 +2,7 @@
 title: "Post of Emphasis on: Points Of Emphasis"
 author: "robert"
 date: 2024-03-15
-category: [referees]
+categories: [referees]
 ---
 
 ```{r start, include=FALSE}

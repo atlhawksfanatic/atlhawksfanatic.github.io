@@ -8,7 +8,7 @@ description: |
 execute:
   echo: false
   warning: false
-category: [finances, salary cap]
+categories: [finances, salary cap]
 ---
 
 *Edit: an earlier version had incorrect values for the minimum growth in the Salary Cap from the 2021 CBA. There is also an expanded discussion on the Expansion section.*
