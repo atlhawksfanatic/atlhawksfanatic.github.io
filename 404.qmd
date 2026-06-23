@@ -1,0 +1,9 @@
+---
+title: Page Not Found
+---
+
+Oh sorry, this page doesn't exist.
+
+Try a different url.
+
+![404 error](img/dust-gif.gif)
